@@ -1,6 +1,6 @@
 package com.project.long_learn.apply;
 
-import com.project.long_learn.Member;
+import com.project.long_learn.domain.Member;
 import com.project.long_learn.group.Group;
 
 public class Volunteers implements Apply {

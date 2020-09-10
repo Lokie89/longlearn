@@ -1,6 +1,6 @@
 package com.project.long_learn.group;
 
-import com.project.long_learn.Member;
+import com.project.long_learn.domain.Member;
 
 /**
  * 그룹.
