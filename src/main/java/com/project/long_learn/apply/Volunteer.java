@@ -9,8 +9,14 @@ import com.project.long_learn.group.Group;
  */
 public class Volunteer implements Apply {
     private Member member;
-    private int appliedId;
+    private int appliedId = 0;
 
+    public Volunteer() {
+    }
+
+    public Volunteer(Member member) {
+        this.member = member;
+    }
 
     @Override
     public void apply(Group group) {
