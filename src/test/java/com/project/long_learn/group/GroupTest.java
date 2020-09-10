@@ -1,13 +1,13 @@
-package com.project.long_learn.club;
+package com.project.long_learn.group;
 
 import com.project.long_learn.Member;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class ClubTest {
+class GroupTest {
 
-    Club study = new Study();
+    Group study = new Study();
 
     @BeforeEach
     void setUp() {
