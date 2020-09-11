@@ -15,7 +15,7 @@ class VolunteerSetTest {
 
     @BeforeEach
     void setUp() {
-        volunteerSet.add(new Student(new Member(3)));
+        volunteerSet.add(new Volunteer(new Member(3)));
     }
 
     @AfterEach
@@ -29,6 +29,6 @@ class VolunteerSetTest {
 
     @Test
     void contains() {
-        assertTrue(volunteerSet.contains(new Teacher(new Member(3))));
+        assertTrue(volunteerSet.contains(new Volunteer(new Member(3))));
     }
 }

@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class VolunteerTest {
 
-    Apply volunteer = new Student(new Member(3));
+    Apply volunteer = new Volunteer(new Member(3));
 
     @BeforeEach
     void setUp() {
@@ -23,7 +23,7 @@ class VolunteerTest {
 
     @Test
     void apply() {
-        volunteer.apply(new LectureStudy());
+        volunteer.apply(new LectureStudy(6));
         assertTrue(volunteer.isApplied());
     }
 }
