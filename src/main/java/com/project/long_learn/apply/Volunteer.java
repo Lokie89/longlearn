@@ -5,11 +5,11 @@ import com.project.long_learn.group.Group;
 
 /**
  * 지원자
- * 신상정보와 지원한
+ * 신상정보와 지원한 그룹 ID
  */
 public class Volunteer implements Apply {
     private Member member;
-    private int appliedId = 0;
+    private int appliedGroupId = 0;
 
     public Volunteer() {
     }
@@ -20,11 +20,11 @@ public class Volunteer implements Apply {
 
     @Override
     public void apply(Group group) {
-        appliedId = group.involve(member);
+        appliedGroupId = group.involve(member);
     }
 
     @Override
     public boolean isApplied() {
-        return appliedId > 0;
+        return appliedGroupId > 0;
     }
 }
