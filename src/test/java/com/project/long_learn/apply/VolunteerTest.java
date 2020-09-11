@@ -1,7 +1,7 @@
 package com.project.long_learn.apply;
 
-import com.project.long_learn.group.Group;
-import com.project.long_learn.group.Study;
+import com.project.long_learn.domain.Member;
+import com.project.long_learn.group.LectureStudy;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,8 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class VolunteerTest {
 
-    Apply volunteer = new Volunteer();
-    Group study = new Study();
+    Apply volunteer = new Student(new Member(3));
 
     @BeforeEach
     void setUp() {
@@ -24,7 +23,7 @@ class VolunteerTest {
 
     @Test
     void apply() {
-        volunteer.apply(study);
+        volunteer.apply(new LectureStudy());
         assertTrue(volunteer.isApplied());
     }
 }

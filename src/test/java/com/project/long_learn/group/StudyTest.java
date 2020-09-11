@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class StudyTest {
 
-    Group study = new Study();
+    Study study = new DebateStudy();
 
     @BeforeEach
     void setUp() {
@@ -19,6 +19,11 @@ class StudyTest {
 
     @Test
     void involve() {
-        study.involve(new Member());
+        study.involve(new Member(3));
+    }
+
+    @Test
+    void debateStudyTest(){
+
     }
 }
