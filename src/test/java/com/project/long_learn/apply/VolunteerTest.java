@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-class ApplyTest {
+class VolunteerTest {
 
     Apply volunteer = new Volunteer();
     Group study = new Study();
