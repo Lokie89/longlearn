@@ -1,6 +1,6 @@
 package com.project.long_learn.group;
 
-import com.project.long_learn.domain.Member;
+import com.project.long_learn.apply.Volunteer;
 
 /**
  * 그룹.
@@ -8,5 +8,5 @@ import com.project.long_learn.domain.Member;
  * 변화된 객체의 일정 상태 값을 반환해줌
  */
 public interface Group {
-    int involve(Member member);
+    int involve(Volunteer volunteer);
 }
