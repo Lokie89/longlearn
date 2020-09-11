@@ -7,7 +7,7 @@ import com.project.long_learn.group.Group;
  * 지원자
  * 신상정보와 지원한 그룹 ID
  */
-public abstract class Volunteer implements Apply {
+public class Volunteer implements Apply {
     private Member member;
     private int appliedGroupId = 0;
 
@@ -17,7 +17,8 @@ public abstract class Volunteer implements Apply {
 
     @Override
     public void apply(Group group) {
-        appliedGroupId = group.involve(member);
+        appliedGroupId = group.involve(this);
+        member.participate(appliedGroupId);
     }
 
     @Override
