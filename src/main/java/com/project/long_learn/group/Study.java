@@ -20,6 +20,17 @@ public abstract class Study implements Group {
         return getStudyId();
     }
 
+    @Override
+    public int except(Volunteer volunteer) {
+        volunteerSet.remove(volunteer);
+        return getStudyId();
+    }
+
+    @Override
+    public boolean isContain(Volunteer volunteer) {
+        return volunteerSet.contains(volunteer);
+    }
+
     protected int getStudyId(){
         return studyId;
     }

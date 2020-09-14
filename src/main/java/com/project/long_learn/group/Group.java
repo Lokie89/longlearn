@@ -9,4 +9,6 @@ import com.project.long_learn.apply.Volunteer;
  */
 public interface Group {
     int involve(Volunteer volunteer);
+    int except(Volunteer volunteer);
+    boolean isContain(Volunteer volunteer);
 }

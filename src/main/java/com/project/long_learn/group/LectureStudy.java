@@ -21,4 +21,21 @@ public class LectureStudy extends Study {
         }
         return super.involve(volunteer);
     }
+
+    @Override
+    public int except(Volunteer volunteer) {
+        if (volunteer.isTeacher()) {
+            teacherSet.remove(volunteer);
+            return getStudyId();
+        }
+        return super.except(volunteer);
+    }
+
+    @Override
+    public boolean isContain(Volunteer volunteer) {
+        if (volunteer.isTeacher() && teacherSet.contains(volunteer)) {
+            return true;
+        }
+        return super.isContain(volunteer);
+    }
 }
