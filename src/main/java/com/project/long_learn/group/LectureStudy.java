@@ -6,7 +6,7 @@ import com.project.long_learn.apply.VolunteerSet;
 import java.util.HashSet;
 
 public class LectureStudy extends Study {
-        // 순서 상관 없을 거 같아서
+    // 순서 상관 없을 거 같아서
     private final VolunteerSet teacherSet = new VolunteerSet(new HashSet<>());
 
     public LectureStudy(int studyId) {
@@ -15,6 +15,10 @@ public class LectureStudy extends Study {
 
     @Override
     public int involve(Volunteer volunteer) {
+        if (volunteer.isTeacher()) {
+            teacherSet.add(volunteer);
+            return getStudyId();
+        }
         return super.involve(volunteer);
     }
 }

@@ -17,6 +17,10 @@ public abstract class Study implements Group {
     @Override
     public int involve(Volunteer volunteer) {
         volunteerSet.add(volunteer);
+        return getStudyId();
+    }
+
+    protected int getStudyId(){
         return studyId;
     }
 }
