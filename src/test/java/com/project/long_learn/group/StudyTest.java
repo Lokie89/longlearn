@@ -1,5 +1,6 @@
 package com.project.long_learn.group;
 
+import com.project.long_learn.apply.VolunteerRole;
 import com.project.long_learn.apply.Volunteer;
 import com.project.long_learn.domain.Member;
 import org.junit.jupiter.api.AfterEach;
@@ -20,11 +21,11 @@ class StudyTest {
 
     @Test
     void involve() {
-        study.involve(new Volunteer(new Member(3)));
+        study.involve(new Volunteer(new Member(3), VolunteerRole.STUDENT));
     }
 
     @Test
-    void debateStudyTest(){
+    void debateStudyTest() {
 
     }
 }
