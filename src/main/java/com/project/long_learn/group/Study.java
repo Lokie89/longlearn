@@ -7,12 +7,11 @@ import java.util.LinkedHashSet;
 
 public abstract class Study implements Group {
 
-    private VolunteerSet volunteerSet;
+    private final VolunteerSet volunteerSet = new VolunteerSet(new LinkedHashSet<>());
     private int studyId;
 
     public Study(int studyId) {
         this.studyId = studyId;
-        volunteerSet = new VolunteerSet(new LinkedHashSet<>());
     }
 
     @Override
