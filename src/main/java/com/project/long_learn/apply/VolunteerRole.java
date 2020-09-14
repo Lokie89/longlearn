@@ -1,6 +1,6 @@
 package com.project.long_learn.apply;
 
-public enum ApplyRole {
+public enum VolunteerRole {
     STUDENT,
     TEACHER,
     ;

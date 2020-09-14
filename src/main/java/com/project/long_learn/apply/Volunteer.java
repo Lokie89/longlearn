@@ -8,12 +8,13 @@ import com.project.long_learn.group.Group;
  * 신상정보와 지원한 그룹 ID
  */
 public class Volunteer implements Apply {
-    private Member member;
+    private final Member member;
     private int appliedGroupId = 0;
-    private ApplyRole applyRole;
+    private final VolunteerRole volunteerRole;
 
-    public Volunteer(Member member) {
+    public Volunteer(Member member, VolunteerRole volunteerRole) {
         this.member = member;
+        this.volunteerRole = volunteerRole;
     }
 
     @Override
@@ -39,5 +40,9 @@ public class Volunteer implements Apply {
     @Override
     public int hashCode() {
         return member.hashCode();
+    }
+
+    public boolean isTeacher() {
+        return volunteerRole.equals(VolunteerRole.TEACHER);
     }
 }
