@@ -10,6 +10,7 @@ import com.project.long_learn.group.Group;
 public class Volunteer implements Apply {
     private Member member;
     private int appliedGroupId = 0;
+    private ApplyRole applyRole;
 
     public Volunteer(Member member) {
         this.member = member;
