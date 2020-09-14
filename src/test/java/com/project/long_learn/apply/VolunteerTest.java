@@ -13,13 +13,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class VolunteerTest {
 
-    Apply volunteer = new Volunteer(new Member(3), VolunteerRole.TEACHER);
+    Volunteer volunteer = new Volunteer(new Member(3), VolunteerRole.TEACHER);
     Study study = new LectureStudy(6);
 
     @BeforeEach
     void setUp() {
         volunteer.apply(study);
         study.isContain(volunteer);
+        assertTrue(study.isContainTeacher());
     }
 
     @AfterEach
@@ -31,7 +32,8 @@ class VolunteerTest {
     }
 
     @Test
-    void refrain(){
+    void refrain() {
         volunteer.refrain(study);
+        assertFalse(study.isContainTeacher());
     }
 }
