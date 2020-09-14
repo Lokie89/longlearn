@@ -25,10 +25,10 @@ public class VolunteerSet {
         volunteers.remove(volunteer);
     }
 
-    public boolean contains(VolunteerSet volunteerSet) {
+    public boolean isContainTeachers() {
         return volunteers.stream()
-                .filter(volunteer -> volunteerSet.contains(volunteer))
-                .count() > 0;
+                .filter(Volunteer::isTeacher)
+                .count() > 0
+                ;
     }
-
 }
