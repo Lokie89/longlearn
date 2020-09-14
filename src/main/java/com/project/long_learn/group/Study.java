@@ -1,13 +1,13 @@
 package com.project.long_learn.group;
 
-import com.project.long_learn.apply.Volunteer;
-import com.project.long_learn.apply.VolunteerSet;
+import com.project.long_learn.apply.Apply;
+import com.project.long_learn.apply.ApplySet;
 
 import java.util.LinkedHashSet;
 
-public abstract class Study implements Group {
+public abstract class Study implements Group<Apply> {
 
-    private final VolunteerSet volunteerSet = new VolunteerSet(new LinkedHashSet<>());
+    private final ApplySet applySet = new ApplySet(new LinkedHashSet<>());
     private int studyId;
 
     public Study(int studyId) {
@@ -15,23 +15,21 @@ public abstract class Study implements Group {
     }
 
     @Override
-    public int involve(Volunteer volunteer) {
-        volunteerSet.add(volunteer);
-        return getStudyId();
-    }
-
-    @Override
-    public int except(Volunteer volunteer) {
-        volunteerSet.remove(volunteer);
-        return getStudyId();
-    }
-
-    @Override
-    public boolean isContain(Volunteer volunteer) {
-        return volunteerSet.contains(volunteer);
-    }
-
-    protected int getStudyId(){
+    public int involve(Apply apply) {
+        applySet.add(apply);
         return studyId;
     }
+
+    @Override
+    public int except(Apply apply) {
+        applySet.remove(apply);
+        return studyId;
+    }
+
+    @Override
+    public boolean isContain(Apply apply) {
+        return applySet.contains(apply);
+    }
+
+
 }
