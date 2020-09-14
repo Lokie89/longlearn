@@ -1,41 +1,9 @@
 package com.project.long_learn.group;
 
-import com.project.long_learn.apply.Volunteer;
-import com.project.long_learn.apply.VolunteerSet;
-
-import java.util.HashSet;
-
 public class LectureStudy extends Study {
-    // 순서 상관 없을 거 같아서
-    private final VolunteerSet teacherSet = new VolunteerSet(new HashSet<>());
 
     public LectureStudy(int studyId) {
         super(studyId);
     }
 
-    @Override
-    public int involve(Volunteer volunteer) {
-        if (volunteer.isTeacher()) {
-            teacherSet.add(volunteer);
-            return getStudyId();
-        }
-        return super.involve(volunteer);
-    }
-
-    @Override
-    public int except(Volunteer volunteer) {
-        if (volunteer.isTeacher()) {
-            teacherSet.remove(volunteer);
-            return getStudyId();
-        }
-        return super.except(volunteer);
-    }
-
-    @Override
-    public boolean isContain(Volunteer volunteer) {
-        if (volunteer.isTeacher() && teacherSet.contains(volunteer)) {
-            return true;
-        }
-        return super.isContain(volunteer);
-    }
 }
