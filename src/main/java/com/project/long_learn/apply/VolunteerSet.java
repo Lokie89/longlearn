@@ -17,6 +17,14 @@ public class VolunteerSet {
         return volunteers.contains(volunteer);
     }
 
+    public int size() {
+        return volunteers.size();
+    }
+
+    public void remove(Volunteer volunteer) {
+        volunteers.remove(volunteer);
+    }
+
     public boolean contains(VolunteerSet volunteerSet) {
         return volunteers.stream()
                 .filter(volunteer -> volunteerSet.contains(volunteer))

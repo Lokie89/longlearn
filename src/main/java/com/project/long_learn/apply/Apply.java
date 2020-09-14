@@ -8,6 +8,5 @@ import com.project.long_learn.group.Group;
  */
 public interface Apply {
     void apply(Group group);
-
-    boolean isApplied();
+    void refrain(Group group);
 }

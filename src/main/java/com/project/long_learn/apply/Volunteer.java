@@ -9,7 +9,6 @@ import com.project.long_learn.group.Group;
  */
 public class Volunteer implements Apply {
     private final Member member;
-    private int appliedGroupId = 0;
     private final VolunteerRole volunteerRole;
 
     public Volunteer(Member member, VolunteerRole volunteerRole) {
@@ -19,13 +18,14 @@ public class Volunteer implements Apply {
 
     @Override
     public void apply(Group group) {
-        appliedGroupId = group.involve(this);
+        int appliedGroupId = group.involve(this);
         member.participate(appliedGroupId);
     }
 
     @Override
-    public boolean isApplied() {
-        return appliedGroupId > 0;
+    public void refrain(Group group) {
+        int appliedGroupId = group.except(this);
+        member.absent(appliedGroupId);
     }
 
     @Override
