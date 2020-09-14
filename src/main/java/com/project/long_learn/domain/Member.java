@@ -17,6 +17,10 @@ public class Member {
         // database save
     }
 
+    public void absent(int involveId) {
+        // database save
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Member)) {
