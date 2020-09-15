@@ -1,6 +1,7 @@
 package com.project.long_learn.apply;
 
 import com.project.long_learn.domain.Member;
+import com.project.long_learn.group.Group;
 
 /**
  * 지원자
@@ -13,6 +14,18 @@ public class Volunteer implements Apply {
     public Volunteer(Member member, VolunteerRole volunteerRole) {
         this.member = member;
         this.volunteerRole = volunteerRole;
+    }
+
+    @Override
+    public void apply(Group group) {
+        int appliedGroupId = group.involve(this);
+        member.participate(appliedGroupId);
+    }
+
+    @Override
+    public void refrain(Group group) {
+        int appliedGroupId = group.except(this);
+        member.absent(appliedGroupId);
     }
 
     @Override

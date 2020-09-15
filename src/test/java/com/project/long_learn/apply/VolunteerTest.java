@@ -18,7 +18,7 @@ class VolunteerTest {
 
     @BeforeEach
     void setUp() {
-        study.involve(volunteer);
+        volunteer.apply(study);
         study.isContain(volunteer);
         assertTrue(study.isContainTeacher());
     }
@@ -33,7 +33,7 @@ class VolunteerTest {
 
     @Test
     void refrain() {
-        study.except(volunteer);
+        volunteer.refrain(study);
         assertFalse(study.isContainTeacher());
     }
 }
