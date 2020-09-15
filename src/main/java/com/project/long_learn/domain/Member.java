@@ -13,6 +13,10 @@ public class Member {
         this.id = id;
     }
 
+    public Member(Member member) {
+        this.id = member.id;
+    }
+
     public void participate(int involveId) {
         // database save
     }

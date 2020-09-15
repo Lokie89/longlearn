@@ -16,6 +16,12 @@ public class Volunteer implements Apply {
         this.volunteerRole = volunteerRole;
     }
 
+    public Volunteer(Volunteer volunteer) {
+        // 불변 유지 위해 값 복사함
+        this.member = new Member(volunteer.member);
+        this.volunteerRole = volunteer.volunteerRole;
+    }
+
     @Override
     public void apply(Group group) {
         int appliedGroupId = group.involve(this);

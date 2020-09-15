@@ -7,7 +7,8 @@ public class VolunteerSet {
     private final Set<Volunteer> volunteers = new LinkedHashSet<>();
 
     public void add(Volunteer volunteer) {
-        volunteers.add(volunteer);
+        Volunteer copiedVolunteer = new Volunteer(volunteer);
+        volunteers.add(copiedVolunteer);
     }
 
     public boolean contains(Volunteer volunteer) {
