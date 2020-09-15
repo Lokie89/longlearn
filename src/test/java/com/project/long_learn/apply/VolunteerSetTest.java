@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class VolunteerSetTest {
 
-    VolunteerSet volunteerSet = new VolunteerSet(new LinkedHashSet<>());
+    VolunteerSet volunteerSet = new VolunteerSet();
 
     @BeforeEach
     void setUp() {

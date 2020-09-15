@@ -3,11 +3,9 @@ package com.project.long_learn.group;
 import com.project.long_learn.apply.Volunteer;
 import com.project.long_learn.apply.VolunteerSet;
 
-import java.util.LinkedHashSet;
-
 public abstract class Study implements Group<Volunteer> {
 
-    private final VolunteerSet volunteerSet = new VolunteerSet(new LinkedHashSet<>());
+    private final VolunteerSet volunteerSet = new VolunteerSet();
     private int studyId;
 
     public Study(int studyId) {
