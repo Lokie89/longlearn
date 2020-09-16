@@ -22,5 +22,8 @@ public class StudyDay {
         return week.equals(studyDay.week) && time.equals(studyDay.time);
     }
 
-    // TODO : hashCode 재정의
+    @Override
+    public int hashCode() {
+        return week.hashCode() + time.hashCode();
+    }
 }
