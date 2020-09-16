@@ -1,6 +1,7 @@
-package com.project.long_learn.group;
+package com.project.long_learn.condition;
 
-import com.project.long_learn.condition.Condition;
+import com.project.long_learn.group.StudyDay;
+import com.project.long_learn.group.StudyLocation;
 
 import java.time.LocalDate;
 import java.util.Set;
