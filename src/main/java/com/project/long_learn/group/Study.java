@@ -2,14 +2,18 @@ package com.project.long_learn.group;
 
 import com.project.long_learn.apply.Volunteer;
 import com.project.long_learn.apply.VolunteerSet;
+import com.project.long_learn.condition.Condition;
+import com.project.long_learn.condition.StudyInformation;
 
-public abstract class Study implements Group<Volunteer> {
+public class Study implements Group<Volunteer> {
 
     private final VolunteerSet volunteerSet = new VolunteerSet();
     private int studyId;
+    private StudyInformation studyInformation;
 
-    public Study(int studyId) {
+    public Study(int studyId, StudyInformation studyInformation) {
         this.studyId = studyId;
+        this.studyInformation = studyInformation;
     }
 
     @Override
@@ -34,5 +38,22 @@ public abstract class Study implements Group<Volunteer> {
         return volunteerSet.isContainTeachers();
     }
 
+    public boolean isSatisfiedInformation(Condition condition) {
+        return this.studyInformation.isSatisfiedCondition(condition);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Study)) {
+            return false;
+        }
+        Study study = (Study) obj;
+        return studyId == study.studyId;
+    }
+
+    @Override
+    public int hashCode() {
+        return studyId;
+    }
 
 }
