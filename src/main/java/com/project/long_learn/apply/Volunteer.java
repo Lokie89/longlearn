@@ -1,7 +1,6 @@
 package com.project.long_learn.apply;
 
 import com.project.long_learn.domain.Member;
-import com.project.long_learn.group.Group;
 
 /**
  * 지원자
