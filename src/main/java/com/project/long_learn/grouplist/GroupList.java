@@ -8,4 +8,5 @@ import com.project.long_learn.condition.Condition;
 public interface GroupList{
     GroupList filter(Condition condition);
     GroupList sort(Condition condition);
+    int size();
 }

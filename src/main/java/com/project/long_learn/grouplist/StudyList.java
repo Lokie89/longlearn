@@ -26,4 +26,9 @@ public class StudyList implements GroupList {
     public StudyList sort(Condition condition) {
         return null;
     }
+
+    @Override
+    public int size() {
+        return studyList.size();
+    }
 }
