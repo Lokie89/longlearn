@@ -11,7 +11,8 @@ public class Volunteer implements Apply {
     private final VolunteerRole volunteerRole;
 
     public Volunteer(Member member, VolunteerRole volunteerRole) {
-        this.member = member;
+        // 불변 유지 위해 값 복사함
+        this.member = new Member(member);
         this.volunteerRole = volunteerRole;
     }
 

@@ -1,9 +1,12 @@
 package com.project.long_learn.group;
 
+import com.project.long_learn.condition.Condition;
+
 import java.time.LocalDate;
 import java.util.Set;
 
-public class StudyInformation {
+public class StudyInformation implements Condition {
+
     private final LocalDate start;
     private final LocalDate end;
     private final Set<StudyDay> studyDay;
@@ -12,7 +15,8 @@ public class StudyInformation {
     private final int minStudent;
     private final int maxStudent;
 
-    private static class Builder {
+    public static class Builder {
+
         private final LocalDate start;
         private final LocalDate end;
         private final Set<StudyDay> studyDay;
@@ -22,7 +26,7 @@ public class StudyInformation {
         private int minStudent;
         private int maxStudent;
 
-        Builder(LocalDate start, LocalDate end, Set<StudyDay> studyDay, StudyLocation location) {
+        public Builder(LocalDate start, LocalDate end, Set<StudyDay> studyDay, StudyLocation location) {
             this.start = start;
             this.end = end;
             this.studyDay = studyDay;
@@ -45,6 +49,22 @@ public class StudyInformation {
             return new StudyInformation(this);
         }
 
+    }
+
+    @Override
+    public boolean isSatisfiedCondition(Condition condition) {
+        if (!(condition instanceof StudyInformation)) {
+            return false;
+        }
+        StudyInformation info = (StudyInformation) condition;
+        return (info.start == null || start.equals(info.start))
+                && (info.end == null || end.equals(info.end))
+                && (info.studyDay == null || studyDay.equals(info.studyDay))
+                && (info.location == null || location.equals(info.location))
+                && (info.description == null || description.equals(info.description))
+                && (info.minStudent == 0 || minStudent > info.minStudent)
+                && (info.maxStudent == 0 || maxStudent < info.maxStudent)
+                ;
 
     }
 
