@@ -78,7 +78,7 @@ public class StudyInformation implements Condition {
                 && (info.end == null || end.equals(info.end))
                 && (info.studyDays == null || studyDays.equals(info.studyDays))
                 && (info.location == null || location.equals(info.location))
-                && (info.description == null || description.contains(info.description))
+                && (info.description == null || (description != null && description.contains(info.description)))
                 && (info.minStudent == 0 || minStudent > info.minStudent)
                 && (info.maxStudent == 0 || maxStudent < info.maxStudent)
                 ;
