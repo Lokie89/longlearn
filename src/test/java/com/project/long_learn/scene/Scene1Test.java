@@ -29,7 +29,7 @@ public class Scene1Test {
 
     @Test
     void 지원해야겠다() {
-        volunteer.apply(study);
+        study.involve(volunteer);
         assertTrue(study.isContain(volunteer));
     }
 }

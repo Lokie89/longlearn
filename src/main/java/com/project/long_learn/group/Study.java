@@ -13,15 +13,15 @@ public abstract class Study implements Group<Volunteer> {
     }
 
     @Override
-    public int involve(Volunteer volunteer) {
+    public void involve(Volunteer volunteer) {
         volunteerSet.add(volunteer);
-        return studyId;
+        volunteer.apply(studyId);
     }
 
     @Override
-    public int except(Volunteer volunteer) {
+    public void except(Volunteer volunteer) {
+        volunteer.refrain(studyId);
         volunteerSet.remove(volunteer);
-        return studyId;
     }
 
     @Override

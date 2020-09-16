@@ -6,7 +6,7 @@ package com.project.long_learn.group;
  * 변화된 객체의 일정 상태 값을 반환해줌
  */
 public interface Group<E> {
-    int involve(E e);
-    int except(E e);
+    void involve(E e);
+    void except(E e);
     boolean isContain(E e);
 }

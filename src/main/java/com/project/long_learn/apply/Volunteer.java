@@ -23,15 +23,13 @@ public class Volunteer implements Apply {
     }
 
     @Override
-    public void apply(Group group) {
-        int appliedGroupId = group.involve(this);
-        member.participate(appliedGroupId);
+    public void apply(int appliedId) {
+        member.participate(appliedId);
     }
 
     @Override
-    public void refrain(Group group) {
-        int appliedGroupId = group.except(this);
-        member.absent(appliedGroupId);
+    public void refrain(int appliedId) {
+        member.absent(appliedId);
     }
 
     @Override
