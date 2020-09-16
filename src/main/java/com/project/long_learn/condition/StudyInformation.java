@@ -10,7 +10,7 @@ public class StudyInformation implements Condition {
 
     private final LocalDate start;
     private final LocalDate end;
-    private final Set<StudyDay> studyDay;
+    private final Set<StudyDay> studyDays;
     private final StudyLocation location;
     private final String description;
     private final int minStudent;
@@ -18,32 +18,48 @@ public class StudyInformation implements Condition {
 
     public static class Builder {
 
-        private final LocalDate start;
-        private final LocalDate end;
-        private final Set<StudyDay> studyDay;
-        private final StudyLocation location;
+        private LocalDate start;
+        private LocalDate end;
+        private Set<StudyDay> studyDays;
+        private StudyLocation location;
 
         private String description;
         private int minStudent;
         private int maxStudent;
 
-        public Builder(LocalDate start, LocalDate end, Set<StudyDay> studyDay, StudyLocation location) {
+        public Builder start(LocalDate start) {
             this.start = start;
+            return this;
+        }
+
+        public Builder end(LocalDate end) {
             this.end = end;
-            this.studyDay = studyDay;
+            return this;
+        }
+
+        public Builder studyDay(Set<StudyDay> studyDays) {
+            this.studyDays = studyDays;
+            return this;
+        }
+
+        public Builder location(StudyLocation location) {
             this.location = location;
+            return this;
         }
 
-        public void description(String description) {
+        public Builder description(String description) {
             this.description = description;
+            return this;
         }
 
-        public void minStudent(int minStudent) {
+        public Builder minStudent(int minStudent) {
             this.minStudent = minStudent;
+            return this;
         }
 
-        public void maxStudent(int maxStudent) {
+        public Builder maxStudent(int maxStudent) {
             this.maxStudent = maxStudent;
+            return this;
         }
 
         public StudyInformation build() {
@@ -60,9 +76,9 @@ public class StudyInformation implements Condition {
         StudyInformation info = (StudyInformation) condition;
         return (info.start == null || start.equals(info.start))
                 && (info.end == null || end.equals(info.end))
-                && (info.studyDay == null || studyDay.equals(info.studyDay))
+                && (info.studyDays == null || studyDays.equals(info.studyDays))
                 && (info.location == null || location.equals(info.location))
-                && (info.description == null || description.equals(info.description))
+                && (info.description == null || description.contains(info.description))
                 && (info.minStudent == 0 || minStudent > info.minStudent)
                 && (info.maxStudent == 0 || maxStudent < info.maxStudent)
                 ;
@@ -72,7 +88,7 @@ public class StudyInformation implements Condition {
     private StudyInformation(Builder builder) {
         this.start = builder.start;
         this.end = builder.end;
-        this.studyDay = builder.studyDay;
+        this.studyDays = builder.studyDays;
         this.location = builder.location;
         this.description = builder.description;
         this.minStudent = builder.minStudent;
