@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.Set;
 
-public class StudyInformation implements Condition {
+public class StudyCondition implements Condition {
 
 
     // 필드 재정의 시 Builder 와 Condition 메서드 내부 수정
@@ -65,18 +65,18 @@ public class StudyInformation implements Condition {
             return this;
         }
 
-        public StudyInformation build() {
-            return new StudyInformation(this);
+        public StudyCondition build() {
+            return new StudyCondition(this);
         }
 
     }
 
     @Override
     public boolean isSatisfiedCondition(Condition condition) {
-        if (!(condition instanceof StudyInformation)) {
+        if (!(condition instanceof StudyCondition)) {
             return false;
         }
-        StudyInformation info = (StudyInformation) condition;
+        StudyCondition info = (StudyCondition) condition;
         return (info.start == null || start.equals(info.start))
                 && (info.end == null || end.equals(info.end))
                 && (info.studyDays == null || studyDays.equals(info.studyDays))
@@ -90,18 +90,18 @@ public class StudyInformation implements Condition {
 
     @Override
     public int compareCondition(Condition condition, Comparator comparator) {
-        if (!(condition instanceof StudyInformation)) {
+        if (!(condition instanceof StudyCondition)) {
             return 0;
         }
         if (!(comparator instanceof StudyInformationComparator)) {
             return 0;
         }
-        StudyInformation info = (StudyInformation) condition;
+        StudyCondition info = (StudyCondition) condition;
         StudyInformationComparator studyInformationComparator = (StudyInformationComparator) comparator;
         return studyInformationComparator.compare(this, info);
     }
 
-    private StudyInformation(Builder builder) {
+    private StudyCondition(Builder builder) {
         this.start = builder.start;
         this.end = builder.end;
         this.studyDays = builder.studyDays;
@@ -111,34 +111,34 @@ public class StudyInformation implements Condition {
         this.maxStudent = builder.maxStudent;
     }
 
-    public enum StudyInformationComparator implements Comparator<StudyInformation> {
+    public enum StudyInformationComparator implements Comparator<StudyCondition> {
         START {
             @Override
-            public int compare(StudyInformation o1, StudyInformation o2) {
+            public int compare(StudyCondition o1, StudyCondition o2) {
                 return o1.start.compareTo(o2.start);
             }
         },
         END {
             @Override
-            public int compare(StudyInformation o1, StudyInformation o2) {
+            public int compare(StudyCondition o1, StudyCondition o2) {
                 return o1.end.compareTo(o2.end);
             }
         },
         LOCATION {
             @Override
-            public int compare(StudyInformation o1, StudyInformation o2) {
+            public int compare(StudyCondition o1, StudyCondition o2) {
                 return o1.location.compareTo(o2.location);
             }
         },
         MINSTUDENT {
             @Override
-            public int compare(StudyInformation o1, StudyInformation o2) {
+            public int compare(StudyCondition o1, StudyCondition o2) {
                 return o1.minStudent >= o2.minStudent ? 1 : -1;
             }
         },
         MAXSTUDENT {
             @Override
-            public int compare(StudyInformation o1, StudyInformation o2) {
+            public int compare(StudyCondition o1, StudyCondition o2) {
                 return o1.maxStudent >= o2.maxStudent ? 1 : -1;
             }
         },
