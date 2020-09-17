@@ -16,11 +16,13 @@ class StudyInformationTest {
 
     List<Study> studyList;
 
+    Study sortStudy = new Study(2, new StudyInformation.Builder().minStudent(3).maxStudent(2).build());
+
     @BeforeEach
     void setUp() {
         studyList = new ArrayList<>();
         studyList.add(new Study(1, new StudyInformation.Builder().description("안녕").build()));
-        studyList.add(new Study(2, new StudyInformation.Builder().minStudent(3).maxStudent(2).build()));
+        studyList.add(sortStudy);
         studyList.add(new Study(3, new StudyInformation.Builder().build()));
         studyList.add(new Study(4, new StudyInformation.Builder().build()));
         studyList.add(new Study(5, new StudyInformation.Builder().build()));
@@ -50,4 +52,12 @@ class StudyInformationTest {
         groupList.filter(new StudyInformation.Builder().minStudent(2).build());
         assertEquals(groupList.size(),1);
     }
+
+    @Test
+    void sortTest1() {
+        StudyList groupList = new StudyList(studyList);
+        groupList.sort(StudyInformation.StudyInformationComparator.MINSTUDENT);
+        assertTrue(groupList.get(11).equals(sortStudy));
+    }
+
 }
