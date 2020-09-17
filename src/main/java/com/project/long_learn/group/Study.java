@@ -5,6 +5,8 @@ import com.project.long_learn.apply.VolunteerSet;
 import com.project.long_learn.condition.Condition;
 import com.project.long_learn.condition.StudyInformation;
 
+import java.util.Comparator;
+
 public class Study implements Group<Volunteer> {
 
     private final VolunteerSet volunteerSet = new VolunteerSet();
@@ -40,6 +42,10 @@ public class Study implements Group<Volunteer> {
 
     public boolean isSatisfiedInformation(Condition condition) {
         return this.studyInformation.isSatisfiedCondition(condition);
+    }
+
+    public int compareInformation(Study study, Comparator comparator) {
+        return this.studyInformation.compareCondition(study.studyInformation, comparator);
     }
 
     @Override

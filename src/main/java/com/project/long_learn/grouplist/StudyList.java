@@ -3,6 +3,7 @@ package com.project.long_learn.grouplist;
 import com.project.long_learn.condition.Condition;
 import com.project.long_learn.group.Study;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,8 +24,9 @@ public class StudyList implements GroupList {
     }
 
     @Override
-    public StudyList sort(Condition condition) {
-        return null;
+    public StudyList sort(Comparator comparator) {
+        studyList.sort((o1, o2) -> o1.compareInformation(o2, comparator));
+        return this;
     }
 
     @Override

@@ -4,10 +4,13 @@ import com.project.long_learn.group.StudyDay;
 import com.project.long_learn.group.StudyLocation;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.Set;
 
 public class StudyInformation implements Condition {
 
+
+    // 필드 재정의 시 Builder 와 Condition 메서드 내부 수정
     private final LocalDate start;
     private final LocalDate end;
     private final Set<StudyDay> studyDays;
@@ -85,6 +88,19 @@ public class StudyInformation implements Condition {
 
     }
 
+    @Override
+    public int compareCondition(Condition condition, Comparator comparator) {
+        if (!(condition instanceof StudyInformation)) {
+            return 0;
+        }
+        if (!(comparator instanceof StudyInformationComparator)) {
+            return 0;
+        }
+        StudyInformation info = (StudyInformation) condition;
+        StudyInformationComparator studyInformationComparator = (StudyInformationComparator) comparator;
+        return studyInformationComparator.compare(this, info);
+    }
+
     private StudyInformation(Builder builder) {
         this.start = builder.start;
         this.end = builder.end;
@@ -93,5 +109,41 @@ public class StudyInformation implements Condition {
         this.description = builder.description;
         this.minStudent = builder.minStudent;
         this.maxStudent = builder.maxStudent;
+    }
+
+    public enum StudyInformationComparator implements Comparator<StudyInformation> {
+        START {
+            @Override
+            public int compare(StudyInformation o1, StudyInformation o2) {
+                return o1.start.compareTo(o2.start);
+            }
+        },
+        END {
+            @Override
+            public int compare(StudyInformation o1, StudyInformation o2) {
+                return o1.end.compareTo(o2.end);
+            }
+        },
+        LOCATION {
+            @Override
+            public int compare(StudyInformation o1, StudyInformation o2) {
+                return o1.location.compareTo(o2.location);
+            }
+        },
+        MINSTUDENT {
+            @Override
+            public int compare(StudyInformation o1, StudyInformation o2) {
+                return o1.minStudent >= o2.minStudent ? 1 : -1;
+            }
+        },
+        MAXSTUDENT {
+            @Override
+            public int compare(StudyInformation o1, StudyInformation o2) {
+                return o1.maxStudent >= o2.maxStudent ? 1 : -1;
+            }
+        },
+        ;
+
+
     }
 }
