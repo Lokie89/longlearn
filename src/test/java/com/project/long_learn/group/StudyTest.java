@@ -8,9 +8,13 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+import java.util.HashSet;
+
 class StudyTest {
 
-    Study study = new Study(5, new StudyInformation.Builder().build());
+    StudyInformation defaultStudyInformation = new StudyInformation(LocalDate.now(), LocalDate.now(), new HashSet<>(), new StudyLocation());
+    Study study = new Study(5, defaultStudyInformation);
 
     @BeforeEach
     void setUp() {
