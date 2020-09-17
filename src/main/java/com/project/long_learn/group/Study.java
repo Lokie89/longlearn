@@ -3,7 +3,7 @@ package com.project.long_learn.group;
 import com.project.long_learn.apply.Volunteer;
 import com.project.long_learn.apply.VolunteerSet;
 import com.project.long_learn.condition.Condition;
-import com.project.long_learn.condition.StudyInformation;
+import com.project.long_learn.condition.StudyCondition;
 
 import java.util.Comparator;
 
@@ -11,11 +11,11 @@ public class Study implements Group<Volunteer> {
 
     private final VolunteerSet volunteerSet = new VolunteerSet();
     private int studyId;
-    private StudyInformation studyInformation;
+    private StudyCondition studyCondition;
 
-    public Study(int studyId, StudyInformation studyInformation) {
+    public Study(int studyId, StudyCondition.Builder studyConditionBuilder) {
         this.studyId = studyId;
-        this.studyInformation = studyInformation;
+        this.studyCondition = studyConditionBuilder.build();
     }
 
     @Override
@@ -41,11 +41,11 @@ public class Study implements Group<Volunteer> {
     }
 
     public boolean isSatisfiedInformation(Condition condition) {
-        return this.studyInformation.isSatisfiedCondition(condition);
+        return this.studyCondition.isSatisfiedCondition(condition);
     }
 
     public int compareInformation(Study study, Comparator comparator) {
-        return this.studyInformation.compareCondition(study.studyInformation, comparator);
+        return this.studyCondition.compareCondition(study.studyCondition, comparator);
     }
 
     @Override
