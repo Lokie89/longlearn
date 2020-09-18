@@ -5,9 +5,13 @@ public class StudyLocation implements Comparable<StudyLocation> {
     private double longitude;
     private String name;
 
-    public StudyLocation(double latitude, double longitude, String name) {
+    public StudyLocation(double latitude, double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    public StudyLocation(double latitude, double longitude, String name) {
+        this(latitude, longitude);
         this.name = name;
     }
 
