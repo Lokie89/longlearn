@@ -2,6 +2,7 @@ package com.project.long_learn.group;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
+import java.util.Objects;
 
 public class StudyDay {
 
@@ -11,6 +12,10 @@ public class StudyDay {
     public StudyDay(DayOfWeek week, LocalTime time) {
         this.week = week;
         this.time = time;
+    }
+
+    public boolean isStudyDayNull() {
+        return Objects.isNull(week) && Objects.isNull(time);
     }
 
     @Override

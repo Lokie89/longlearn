@@ -1,11 +1,12 @@
 package com.project.long_learn.condition;
 
-import com.project.long_learn.group.StudyDay;
+import com.project.long_learn.group.StudyDays;
+import com.project.long_learn.group.StudyEssentialFieldNotSatisfiedException;
 import com.project.long_learn.group.StudyLocation;
 
 import java.time.LocalDate;
 import java.util.Comparator;
-import java.util.Set;
+import java.util.Objects;
 
 public class StudyCondition implements Condition {
 
@@ -13,17 +14,30 @@ public class StudyCondition implements Condition {
     // 필드 재정의 시 Builder 와 Condition 메서드 내부 수정
     private final LocalDate start;
     private final LocalDate end;
-    private final Set<StudyDay> studyDays;
+    private final StudyDays studyDays;
     private final StudyLocation location;
     private final String description;
     private final int minStudent;
     private final int maxStudent;
 
+    public void validateEssentialField() {
+        if (
+                Objects.isNull(start)
+                        || Objects.isNull(end)
+                        || start.isAfter(end)
+                        || studyDays.isStudyDaysNull()
+                        || location.isStudyLocationNull()
+        ) {
+            throw new StudyEssentialFieldNotSatisfiedException();
+        }
+
+    }
+
     public static class Builder {
 
         private LocalDate start;
         private LocalDate end;
-        private Set<StudyDay> studyDays;
+        private StudyDays studyDays;
         private StudyLocation location;
 
         private String description;
@@ -40,7 +54,7 @@ public class StudyCondition implements Condition {
             return this;
         }
 
-        public Builder studyDay(Set<StudyDay> studyDays) {
+        public Builder studyDay(StudyDays studyDays) {
             this.studyDays = studyDays;
             return this;
         }

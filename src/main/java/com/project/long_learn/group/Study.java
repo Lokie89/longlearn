@@ -13,9 +13,10 @@ public class Study implements Group<Volunteer> {
     private int studyId;
     private StudyCondition studyCondition;
 
-    public Study(int studyId, StudyCondition.Builder studyConditionBuilder) {
+    public Study(int studyId, StudyCondition studyCondition) {
         this.studyId = studyId;
-        this.studyCondition = studyConditionBuilder.build();
+        studyCondition.validateEssentialField();
+        this.studyCondition = studyCondition;
     }
 
     @Override
