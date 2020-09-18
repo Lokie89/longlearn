@@ -19,10 +19,12 @@ public class Study implements Group<Volunteer> {
         this.studyCondition = studyCondition;
     }
 
+    //TODO : maxTeacher validate 추가
     @Override
     public void involve(Volunteer volunteer) {
         validateAddVolunteer(volunteer);
         validateAddCondition();
+        validateLectureStudy(volunteer);
         volunteerSet.add(volunteer);
         volunteer.apply(studyId);
     }
@@ -34,9 +36,29 @@ public class Study implements Group<Volunteer> {
     }
 
     private void validateAddCondition() {
-        if (studyCondition.getMax() != 0 && vacancy() == 0) {
+        if (isFullVolunteerStudyCondition()) {
             throw new CannotApplyStudyException();
         }
+    }
+
+    private boolean isFullVolunteerStudyCondition() {
+        return studyCondition.getMax() != 0 && vacancy() == 0;
+    }
+
+    private void validateLectureStudy(Volunteer volunteer) {
+        if (!enoughTeacher() && !volunteer.isTeacher()
+                && studyCondition.isLectureStudy()
+                && !isVacantForTeacher()) {
+            throw new CannotApplyStudyException();
+        }
+    }
+
+    private boolean isVacantForTeacher() {
+        return vacancy() > studyCondition.getMinTeacher();
+    }
+
+    private boolean enoughTeacher(){
+        return volunteerSet.enoughTeacher(studyCondition.getMinTeacher());
     }
 
     @Override

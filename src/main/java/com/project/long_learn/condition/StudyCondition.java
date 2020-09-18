@@ -20,6 +20,9 @@ public class StudyCondition implements Condition {
     private final int minStudent;
     private final int maxStudent;
 
+    private final int minTeacher;
+    private final int maxTeacher;
+
     public void validateEssentialField() {
         if (
                 Objects.isNull(start)
@@ -35,7 +38,15 @@ public class StudyCondition implements Condition {
     }
 
     public int getMax() {
-        return maxStudent;
+        return maxStudent + maxTeacher;
+    }
+
+    public boolean isLectureStudy() {
+        return minTeacher > 0;
+    }
+
+    public int getMinTeacher(){
+        return minTeacher;
     }
 
     public static class Builder {
@@ -48,6 +59,8 @@ public class StudyCondition implements Condition {
         private String description;
         private int minStudent;
         private int maxStudent;
+        private int minTeacher;
+        private int maxTeacher;
 
         public Builder start(LocalDate start) {
             this.start = start;
@@ -83,6 +96,17 @@ public class StudyCondition implements Condition {
             this.maxStudent = maxStudent;
             return this;
         }
+
+        public Builder minTeacher(int minTeacher) {
+            this.minTeacher = minTeacher;
+            return this;
+        }
+
+        public Builder maxTeacher(int maxTeacher) {
+            this.maxTeacher = maxTeacher;
+            return this;
+        }
+
 
         public StudyCondition build() {
             return new StudyCondition(this);
@@ -128,6 +152,8 @@ public class StudyCondition implements Condition {
         this.description = builder.description;
         this.minStudent = builder.minStudent;
         this.maxStudent = builder.maxStudent;
+        this.minTeacher = builder.minTeacher;
+        this.maxTeacher = builder.maxTeacher;
     }
 
     public enum StudyInformationComparator implements Comparator<StudyCondition> {

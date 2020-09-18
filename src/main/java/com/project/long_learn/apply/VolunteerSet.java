@@ -28,4 +28,10 @@ public class VolunteerSet {
                 .count() > 0
                 ;
     }
+
+    public boolean enoughTeacher(int minTeacher) {
+        return volunteers.stream()
+                .filter(Volunteer::isTeacher)
+                .count() >= minTeacher;
+    }
 }
