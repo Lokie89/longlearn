@@ -27,10 +27,15 @@ public class StudyCondition implements Condition {
                         || start.isAfter(end)
                         || Objects.isNull(studyDays) || studyDays.isStudyDaysNull()
                         || Objects.isNull(location) || location.isStudyLocationNull()
+                        || minStudent > maxStudent
         ) {
             throw new StudyEssentialFieldNotSatisfiedException();
         }
 
+    }
+
+    public int getMax() {
+        return maxStudent;
     }
 
     public static class Builder {

@@ -21,8 +21,22 @@ public class Study implements Group<Volunteer> {
 
     @Override
     public void involve(Volunteer volunteer) {
+        validateAddVolunteer(volunteer);
+        validateAddCondition();
         volunteerSet.add(volunteer);
         volunteer.apply(studyId);
+    }
+
+    private void validateAddVolunteer(Volunteer volunteer) {
+        if (volunteerSet.contains(volunteer)) {
+            throw new AlreadyApplyVolunteerException();
+        }
+    }
+
+    private void validateAddCondition() {
+        if (studyCondition.getMax() != 0 && vacancy() == 0) {
+            throw new CannotApplyStudyException();
+        }
     }
 
     @Override
@@ -47,6 +61,18 @@ public class Study implements Group<Volunteer> {
 
     public int compareInformation(Study study, Comparator comparator) {
         return this.studyCondition.compareCondition(study.studyCondition, comparator);
+    }
+
+    public boolean isVacant() {
+        return vacancy() > 0;
+    }
+
+    public int vacancy() {
+        final int max = studyCondition.getMax();
+        if (max == 0) {
+            return max;
+        }
+        return max - volunteerSet.size();
     }
 
     @Override
