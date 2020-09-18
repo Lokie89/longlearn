@@ -25,8 +25,8 @@ public class StudyCondition implements Condition {
                 Objects.isNull(start)
                         || Objects.isNull(end)
                         || start.isAfter(end)
-                        || studyDays.isStudyDaysNull()
-                        || location.isStudyLocationNull()
+                        || Objects.isNull(studyDays) || studyDays.isStudyDaysNull()
+                        || Objects.isNull(location) || location.isStudyLocationNull()
         ) {
             throw new StudyEssentialFieldNotSatisfiedException();
         }
