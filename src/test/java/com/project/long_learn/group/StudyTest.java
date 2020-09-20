@@ -59,4 +59,15 @@ class StudyTest {
 
         Assertions.assertThrows(AlreadyApplyVolunteerException.class, () -> study.involve(volunteer2));
     }
+
+    @Test
+    void enoughTeacherTest(){
+        Study study = new Study(5, defaultBuilder.maxStudent(3).minTeacher(1).build());
+        Volunteer volunteer1 = new Volunteer(new Member(1), VolunteerRole.TEACHER);
+
+        Volunteer volunteer2 = new Volunteer(new Member(2), VolunteerRole.TEACHER);
+
+        study.involve(volunteer1);
+        Assertions.assertThrows(CannotApplyStudyException.class, () -> study.involve(volunteer2));
+    }
 }

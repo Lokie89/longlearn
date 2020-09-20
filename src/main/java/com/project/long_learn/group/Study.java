@@ -25,6 +25,7 @@ public class Study implements Group<Volunteer> {
         validateAddVolunteer(volunteer);
         validateAddCondition();
         validateLectureStudy(volunteer);
+        validateEnoughTeacher(volunteer);
         volunteerSet.add(volunteer);
         volunteer.apply(studyId);
     }
@@ -45,6 +46,12 @@ public class Study implements Group<Volunteer> {
         return studyCondition.getMax() != 0 && vacancy() == 0;
     }
 
+    private void validateEnoughTeacher(Volunteer volunteer) {
+        if (volunteer.isTeacher() && enoughTeacher()) {
+            throw new CannotApplyStudyException();
+        }
+    }
+
     private void validateLectureStudy(Volunteer volunteer) {
         if (!enoughTeacher() && !volunteer.isTeacher()
                 && studyCondition.isLectureStudy()
@@ -57,7 +64,7 @@ public class Study implements Group<Volunteer> {
         return vacancy() > studyCondition.getMinTeacher();
     }
 
-    private boolean enoughTeacher(){
+    private boolean enoughTeacher() {
         return volunteerSet.enoughTeacher(studyCondition.getMinTeacher());
     }
 
