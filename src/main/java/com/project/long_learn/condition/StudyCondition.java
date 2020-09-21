@@ -3,6 +3,7 @@ package com.project.long_learn.condition;
 import com.project.long_learn.group.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.Objects;
 
@@ -22,6 +23,7 @@ public class StudyCondition implements Condition {
     private final int maxTeacher;
 
     private final int costPerClass;
+    private final LocalDateTime recruitmentLimit;
 
 
     /**
@@ -47,6 +49,9 @@ public class StudyCondition implements Condition {
         }
         if (costPerClass < 0) {
             throw new StudyCostArrangeException();
+        }
+        if (recruitmentLimit.isBefore(LocalDateTime.now())) {
+            throw new StudyRecruitmentLimitArrangeException();
         }
     }
 
@@ -75,6 +80,8 @@ public class StudyCondition implements Condition {
         private int minTeacher;
         private int maxTeacher;
         private int costPerClass;
+
+        private LocalDateTime recruitmentLimit;
 
         public Builder start(LocalDate start) {
             this.start = start;
@@ -123,6 +130,11 @@ public class StudyCondition implements Condition {
 
         public Builder costPerClass(int costPerClass) {
             this.costPerClass = costPerClass;
+            return this;
+        }
+
+        public Builder recruitmentLimit(LocalDateTime recruitmentLimit) {
+            this.recruitmentLimit = recruitmentLimit;
             return this;
         }
 
@@ -175,6 +187,7 @@ public class StudyCondition implements Condition {
         this.minTeacher = builder.minTeacher;
         this.maxTeacher = builder.maxTeacher;
         this.costPerClass = builder.costPerClass;
+        this.recruitmentLimit = builder.recruitmentLimit;
     }
 
     public enum StudyInformationComparator implements Comparator<StudyCondition> {
@@ -212,6 +225,12 @@ public class StudyCondition implements Condition {
             @Override
             public int compare(StudyCondition o1, StudyCondition o2) {
                 return o1.costPerClass >= o2.costPerClass ? 1 : -1;
+            }
+        },
+        RECRUITMENTLIMIT {
+            @Override
+            public int compare(StudyCondition o1, StudyCondition o2) {
+                return o1.recruitmentLimit.compareTo(o2.recruitmentLimit);
             }
         },
         ;
