@@ -110,6 +110,7 @@ public class StudyCondition implements Condition {
 
         public Builder minStudent(int minStudent) {
             this.minStudent = minStudent;
+            this.maxStudent = maxStudent == 0 ? Integer.MAX_VALUE : maxStudent;
             return this;
         }
 
@@ -120,6 +121,7 @@ public class StudyCondition implements Condition {
 
         public Builder minTeacher(int minTeacher) {
             this.minTeacher = minTeacher;
+            this.maxTeacher = maxTeacher == 0 ? Integer.MAX_VALUE : maxTeacher;
             return this;
         }
 
