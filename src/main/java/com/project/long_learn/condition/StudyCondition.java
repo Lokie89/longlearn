@@ -1,8 +1,6 @@
 package com.project.long_learn.condition;
 
-import com.project.long_learn.group.StudyDays;
-import com.project.long_learn.group.StudyEssentialFieldNotSatisfiedException;
-import com.project.long_learn.group.StudyLocation;
+import com.project.long_learn.group.*;
 
 import java.time.LocalDate;
 import java.util.Comparator;
@@ -25,19 +23,31 @@ public class StudyCondition implements Condition {
 
     private final int costPerClass;
 
-    public void validateEssentialField() {
-        if (
-                Objects.isNull(start)
-                        || Objects.isNull(end)
-                        || start.isAfter(end)
-                        || Objects.isNull(studyDays) || studyDays.isStudyDaysNull()
-                        || Objects.isNull(location) || location.isStudyLocationNull()
-                        || minStudent > maxStudent
-                        || costPerClass < 0
-        ) {
-            throw new StudyEssentialFieldNotSatisfiedException();
-        }
 
+    /**
+     * return StudyEssentialFieldNotSatisfiedException
+     */
+    public void validateEssentialField() {
+        if (Objects.isNull(start)
+                || Objects.isNull(end)
+                || start.isAfter(end)) {
+            throw new StudyDateIsNullException();
+        }
+        if (start.isAfter(end)) {
+            throw new StudyDateArrangeException();
+        }
+        if (Objects.isNull(studyDays) || studyDays.isStudyDaysNull()) {
+            throw new StudyDaysIsNullException();
+        }
+        if (Objects.isNull(location) || location.isStudyLocationNull()) {
+            throw new StudyLocationIsNullException();
+        }
+        if (minStudent > maxStudent) {
+            throw new StudyStudentArrangeException();
+        }
+        if (costPerClass < 0) {
+            throw new StudyCostArrangeException();
+        }
     }
 
     public int getMax() {
@@ -48,7 +58,7 @@ public class StudyCondition implements Condition {
         return minTeacher > 0;
     }
 
-    public int getMinTeacher(){
+    public int getMinTeacher() {
         return minTeacher;
     }
 
