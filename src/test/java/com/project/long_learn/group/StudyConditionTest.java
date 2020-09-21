@@ -1,6 +1,9 @@
 package com.project.long_learn.group;
 
 import com.project.long_learn.condition.StudyCondition;
+import com.project.long_learn.condition.StudyDay;
+import com.project.long_learn.condition.StudyDays;
+import com.project.long_learn.condition.StudyLocation;
 import com.project.long_learn.grouplist.StudyList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;

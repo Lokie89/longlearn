@@ -1,7 +1,5 @@
 package com.project.long_learn.condition;
 
-import com.project.long_learn.group.*;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Comparator;

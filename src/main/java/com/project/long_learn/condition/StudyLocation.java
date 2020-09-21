@@ -1,4 +1,4 @@
-package com.project.long_learn.group;
+package com.project.long_learn.condition;
 
 public class StudyLocation implements Comparable<StudyLocation> {
     private double latitude;

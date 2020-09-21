@@ -1,4 +1,4 @@
-package com.project.long_learn.group;
+package com.project.long_learn.condition;
 
 import java.util.Arrays;
 import java.util.HashSet;
