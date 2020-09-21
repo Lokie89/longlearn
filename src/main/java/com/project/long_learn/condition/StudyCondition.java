@@ -23,6 +23,8 @@ public class StudyCondition implements Condition {
     private final int minTeacher;
     private final int maxTeacher;
 
+    private final int costPerClass;
+
     public void validateEssentialField() {
         if (
                 Objects.isNull(start)
@@ -31,6 +33,7 @@ public class StudyCondition implements Condition {
                         || Objects.isNull(studyDays) || studyDays.isStudyDaysNull()
                         || Objects.isNull(location) || location.isStudyLocationNull()
                         || minStudent > maxStudent
+                        || costPerClass < 0
         ) {
             throw new StudyEssentialFieldNotSatisfiedException();
         }
@@ -61,6 +64,7 @@ public class StudyCondition implements Condition {
         private int maxStudent;
         private int minTeacher;
         private int maxTeacher;
+        private int costPerClass;
 
         public Builder start(LocalDate start) {
             this.start = start;
@@ -107,6 +111,11 @@ public class StudyCondition implements Condition {
             return this;
         }
 
+        public Builder costPerClass(int costPerClass) {
+            this.costPerClass = costPerClass;
+            return this;
+        }
+
 
         public StudyCondition build() {
             return new StudyCondition(this);
@@ -125,8 +134,9 @@ public class StudyCondition implements Condition {
                 && (info.studyDays == null || studyDays.equals(info.studyDays))
                 && (info.location == null || location.equals(info.location))
                 && (info.description == null || (description != null && description.contains(info.description)))
-                && (info.minStudent == 0 || minStudent > info.minStudent)
-                && (info.maxStudent == 0 || maxStudent < info.maxStudent)
+                && (info.minStudent == 0 || minStudent >= info.minStudent)
+                && (info.maxStudent == 0 || maxStudent <= info.maxStudent)
+                && (info.costPerClass == 0 || costPerClass <= info.costPerClass)
                 ;
 
     }
@@ -154,6 +164,7 @@ public class StudyCondition implements Condition {
         this.maxStudent = builder.maxStudent;
         this.minTeacher = builder.minTeacher;
         this.maxTeacher = builder.maxTeacher;
+        this.costPerClass = builder.costPerClass;
     }
 
     public enum StudyInformationComparator implements Comparator<StudyCondition> {
@@ -185,6 +196,12 @@ public class StudyCondition implements Condition {
             @Override
             public int compare(StudyCondition o1, StudyCondition o2) {
                 return o1.maxStudent >= o2.maxStudent ? 1 : -1;
+            }
+        },
+        COSTPERCLASS {
+            @Override
+            public int compare(StudyCondition o1, StudyCondition o2) {
+                return o1.costPerClass >= o2.costPerClass ? 1 : -1;
             }
         },
         ;
