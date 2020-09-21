@@ -155,7 +155,7 @@ public class StudyCondition implements Condition {
         StudyCondition info = (StudyCondition) condition;
         return (info.start == null || start.isAfter(info.start))
                 && (info.end == null || end.isBefore(info.end))
-                && (info.studyDays == null || studyDays.contains(info.studyDays))
+                && (info.studyDays == null || studyDays.available(info.studyDays))
                 && (info.location == null || location.contains(info.location))
                 && (info.description == null || (description != null && description.contains(info.description)))
                 && (info.minStudent == 0 || minStudent >= info.minStudent)

@@ -32,7 +32,19 @@ public class StudyDay {
             return false;
         }
         StudyDay studyDay = (StudyDay) obj;
-        return week.equals(studyDay.week) && startTime.equals(studyDay.startTime) && endTime.equals(endTime);
+        return week.equals(studyDay.week) && startTime.equals(studyDay.startTime) && endTime.equals(studyDay.endTime);
+    }
+
+    public boolean contains(StudyDay condition) {
+        return week.equals(condition.week) && isBeginBetweenTimes(condition);
+    }
+
+    private boolean isBeginBetweenTimes(StudyDay condition) {
+        LocalTime conditionStartTime = condition.startTime;
+        LocalTime conditionEndTime = condition.endTime;
+
+        return (conditionStartTime.equals(this.startTime) || conditionStartTime.isBefore(this.startTime))
+                && (this.endTime.equals(conditionEndTime) || this.endTime.isBefore(conditionEndTime));
     }
 
     @Override
