@@ -36,7 +36,7 @@ public class Scene1Test {
                 .maxStudent(10)
                 .minTeacher(0)
                 .maxTeacher(5)
-                .recruitmentLimit(LocalDateTime.of(2020, 9, 25, 0, 0))
+                .recruitmentLimit(LocalDateTime.now().plusDays(2))
                 .studyDay(new StudyDays(new StudyDay(DayOfWeek.SUNDAY), new StudyDay(DayOfWeek.TUESDAY)));
 
         for (int i = 0; i < 100; i++) {
@@ -48,7 +48,7 @@ public class Scene1Test {
                         .start(LocalDate.of(2020, 9, 30))
                         .end(LocalDate.of(2020, 11, 30))
                         .costPerClass(10000)
-                        .recruitmentLimit(LocalDateTime.of(2020, 9, 22, 0, 0))
+                        .recruitmentLimit(LocalDateTime.now().plusDays(2))
                         .description("꽃꽂이 클래스")
                         .minTeacher(1)
                         .location(new StudyLocation(127.3534, 39.78144, "강남역"))

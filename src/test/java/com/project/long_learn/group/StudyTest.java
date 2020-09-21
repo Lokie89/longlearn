@@ -14,11 +14,11 @@ import org.junit.jupiter.api.Test;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 class StudyTest {
 
-    StudyCondition.Builder defaultBuilder = new StudyCondition.Builder().start(LocalDate.now()).end(LocalDate.now()).studyDay(new StudyDays(new StudyDay(DayOfWeek.FRIDAY))).location(new StudyLocation(1, 1, "강남"));
+    StudyCondition.Builder defaultBuilder = new StudyCondition.Builder().start(LocalDate.now()).end(LocalDate.now()).studyDay(new StudyDays(new StudyDay(DayOfWeek.FRIDAY))).location(new StudyLocation(1, 1, "강남")).recruitmentLimit(LocalDateTime.now().plusDays(2));
     Study study = new Study(5, defaultBuilder.maxStudent(3).build());
 
     @BeforeEach

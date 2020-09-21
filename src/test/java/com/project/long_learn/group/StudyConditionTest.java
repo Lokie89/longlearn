@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,8 +23,7 @@ class StudyConditionTest {
 
     List<Study> studyList;
 
-    StudyCondition.Builder defaultBuilder = new StudyCondition.Builder().start(LocalDate.EPOCH).end(LocalDate.now()).studyDay(new StudyDays(new StudyDay(DayOfWeek.FRIDAY))).location(new StudyLocation(1, 1, "강남"));
-    Study sortStudy = new Study(2, defaultBuilder.minStudent(3).build());
+    StudyCondition.Builder defaultBuilder = new StudyCondition.Builder().start(LocalDate.EPOCH).end(LocalDate.now()).studyDay(new StudyDays(new StudyDay(DayOfWeek.FRIDAY))).location(new StudyLocation(1, 1, "강남")).recruitmentLimit(LocalDateTime.now().plusDays(2));
 
     StudyCondition defaultStudyCondition = defaultBuilder.build();
 
@@ -32,7 +31,7 @@ class StudyConditionTest {
     void setUp() {
         studyList = new ArrayList<>();
         studyList.add(new Study(1, defaultBuilder.description("안녕").build()));
-        studyList.add(sortStudy);
+        studyList.add(new Study(2, defaultBuilder.description(null).minStudent(3).build()));
         studyList.add(new Study(3, defaultStudyCondition));
         studyList.add(new Study(4, defaultStudyCondition));
         studyList.add(new Study(5, defaultStudyCondition));
@@ -59,7 +58,7 @@ class StudyConditionTest {
     @Test
     void filterTest2() {
         StudyList groupList = new StudyList(studyList);
-        groupList.filter(defaultBuilder.minStudent(2).build());
+        groupList.filter(new StudyCondition.Builder().minStudent(2).build());
         assertEquals(groupList.size(), 1);
     }
 
