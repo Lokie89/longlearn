@@ -5,6 +5,10 @@ public class StudyLocation implements Comparable<StudyLocation> {
     private double longitude;
     private String name;
 
+    public StudyLocation(String name) {
+        this.name = name;
+    }
+
     public StudyLocation(double latitude, double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
@@ -22,5 +26,9 @@ public class StudyLocation implements Comparable<StudyLocation> {
 
     public boolean isStudyLocationNull() {
         return latitude == 0 && longitude == 0;
+    }
+
+    public boolean contains(StudyLocation studyLocation){
+        return this.name.contains(studyLocation.name);
     }
 }

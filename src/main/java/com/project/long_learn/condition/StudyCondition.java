@@ -151,10 +151,10 @@ public class StudyCondition implements Condition {
             return false;
         }
         StudyCondition info = (StudyCondition) condition;
-        return (info.start == null || start.equals(info.start))
-                && (info.end == null || end.equals(info.end))
-                && (info.studyDays == null || studyDays.equals(info.studyDays))
-                && (info.location == null || location.equals(info.location))
+        return (info.start == null || start.isAfter(info.start))
+                && (info.end == null || end.isBefore(info.end))
+                && (info.studyDays == null || studyDays.contains(info.studyDays))
+                && (info.location == null || location.contains(info.location))
                 && (info.description == null || (description != null && description.contains(info.description)))
                 && (info.minStudent == 0 || minStudent >= info.minStudent)
                 && (info.maxStudent == 0 || maxStudent <= info.maxStudent)

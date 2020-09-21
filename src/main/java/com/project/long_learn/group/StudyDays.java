@@ -31,4 +31,8 @@ public class StudyDays {
                 .isPresent()
                 ;
     }
+
+    public boolean contains(StudyDays studyDays){
+        return this.studyDays.containsAll(studyDays.studyDays);
+    }
 }
