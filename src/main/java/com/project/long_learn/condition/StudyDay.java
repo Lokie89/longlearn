@@ -7,15 +7,23 @@ import java.util.Objects;
 public class StudyDay {
 
     private final DayOfWeek week;
-    private final LocalTime time;
+    private final LocalTime startTime;
+    private final LocalTime endTime;
 
-    public StudyDay(DayOfWeek week, LocalTime time) {
+    public StudyDay(DayOfWeek week, LocalTime startTime, LocalTime endTime) {
         this.week = week;
-        this.time = time;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
+    public StudyDay(DayOfWeek week) {
+        this.week = week;
+        this.startTime = LocalTime.MIN;
+        this.endTime = LocalTime.MAX;
     }
 
     public boolean isStudyDayNull() {
-        return Objects.isNull(week) && Objects.isNull(time);
+        return Objects.isNull(week) && Objects.isNull(startTime) && Objects.isNull(endTime);
     }
 
     @Override
@@ -24,11 +32,11 @@ public class StudyDay {
             return false;
         }
         StudyDay studyDay = (StudyDay) obj;
-        return week.equals(studyDay.week) && time.equals(studyDay.time);
+        return week.equals(studyDay.week) && startTime.equals(studyDay.startTime) && endTime.equals(endTime);
     }
 
     @Override
     public int hashCode() {
-        return week.hashCode() + time.hashCode();
+        return week.hashCode() + startTime.hashCode() + endTime.hashCode();
     }
 }

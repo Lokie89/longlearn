@@ -23,7 +23,7 @@ class StudyConditionTest {
 
     List<Study> studyList;
 
-    StudyCondition.Builder defaultBuilder = new StudyCondition.Builder().start(LocalDate.EPOCH).end(LocalDate.now()).studyDay(new StudyDays(new StudyDay(DayOfWeek.FRIDAY, LocalTime.NOON))).location(new StudyLocation(1, 1, "강남"));
+    StudyCondition.Builder defaultBuilder = new StudyCondition.Builder().start(LocalDate.EPOCH).end(LocalDate.now()).studyDay(new StudyDays(new StudyDay(DayOfWeek.FRIDAY))).location(new StudyLocation(1, 1, "강남"));
     Study sortStudy = new Study(2, defaultBuilder.minStudent(3).build());
 
     StudyCondition defaultStudyCondition = defaultBuilder.build();
@@ -76,7 +76,7 @@ class StudyConditionTest {
         Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(null).end(null).studyDay(null).location(null).build()));
         Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(null).end(null).studyDay(null).location(null).start(LocalDate.now()).build()));
         Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(null).end(null).studyDay(null).location(null).end(LocalDate.now()).build()));
-        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(null).end(null).studyDay(null).location(null).studyDay(new StudyDays(new StudyDay(DayOfWeek.FRIDAY, LocalTime.NOON))).build()));
+        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(null).end(null).studyDay(null).location(null).studyDay(new StudyDays(new StudyDay(DayOfWeek.FRIDAY))).build()));
         Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(null).end(null).studyDay(null).location(null).location(new StudyLocation(1,1,"d")).build()));
         Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(null).end(null).studyDay(null).location(null).start(LocalDate.now()).end(LocalDate.now()).build()));
         Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(null).end(null).studyDay(null).location(null).start(LocalDate.EPOCH).end(LocalDate.now()).build()));
