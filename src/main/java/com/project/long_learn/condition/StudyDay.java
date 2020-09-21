@@ -10,16 +10,22 @@ public class StudyDay {
     private final LocalTime startTime;
     private final LocalTime endTime;
 
-    public StudyDay(DayOfWeek week, LocalTime startTime, LocalTime endTime) {
+    private StudyDay(DayOfWeek week, LocalTime startTime, LocalTime endTime) {
         this.week = week;
         this.startTime = startTime;
         this.endTime = endTime;
     }
 
-    public StudyDay(DayOfWeek week) {
-        this.week = week;
-        this.startTime = LocalTime.MIN;
-        this.endTime = LocalTime.MAX;
+    public static StudyDay of(DayOfWeek week) {
+        return new StudyDay(week, LocalTime.MIN, LocalTime.MAX);
+    }
+
+    public static StudyDay of(DayOfWeek week, int startHour, int startMinute, int endHour, int endMinute) {
+        return new StudyDay(week, LocalTime.of(startHour, startMinute), LocalTime.of(endHour, endMinute));
+    }
+
+    public static StudyDay of(DayOfWeek week, LocalTime startTime, LocalTime endTime) {
+        return new StudyDay(week, startTime, endTime);
     }
 
     public boolean isStudyDayNull() {

@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +36,7 @@ public class Scene1Test {
                 .minTeacher(0)
                 .maxTeacher(5)
                 .recruitmentLimit(LocalDateTime.now().plusDays(2))
-                .studyDay(new StudyDays(new StudyDay(DayOfWeek.SUNDAY), new StudyDay(DayOfWeek.TUESDAY)));
+                .studyDay(new StudyDays(StudyDay.of(DayOfWeek.SUNDAY), StudyDay.of(DayOfWeek.TUESDAY)));
 
         for (int i = 0; i < 100; i++) {
             groupList.add(new Study(i, dumpBuilder.build()));
@@ -52,7 +51,7 @@ public class Scene1Test {
                         .description("꽃꽂이 클래스")
                         .minTeacher(1)
                         .location(new StudyLocation(127.3534, 39.78144, "강남역"))
-                        .studyDay(new StudyDays(new StudyDay(DayOfWeek.MONDAY, LocalTime.of(19, 00), LocalTime.of(21, 00)), new StudyDay(DayOfWeek.TUESDAY, LocalTime.of(19, 00), LocalTime.of(20, 00))))
+                        .studyDay(new StudyDays(StudyDay.of(DayOfWeek.MONDAY, 19, 00, 21, 00), StudyDay.of(DayOfWeek.TUESDAY, 19, 00, 20, 00)))
                         .build());
 
         groupList.add(flowerStudy);
@@ -71,7 +70,7 @@ public class Scene1Test {
                 .description("꽃꽂이")
                 .location(new StudyLocation("강남"))
                 .minTeacher(1)
-                .studyDay(new StudyDays(new StudyDay(DayOfWeek.MONDAY, LocalTime.of(19, 00), LocalTime.of(21, 00)), new StudyDay(DayOfWeek.TUESDAY, LocalTime.of(19, 00), LocalTime.of(20, 00))))
+                .studyDay(new StudyDays(StudyDay.of(DayOfWeek.MONDAY, 19, 00, 21, 00), StudyDay.of(DayOfWeek.TUESDAY, 19, 00, 20, 00)))
                 .build();
         Assertions.assertTrue(studyList.size() == 101);
         Assertions.assertTrue(studyList.filter(filterCondition).size() == 1);
