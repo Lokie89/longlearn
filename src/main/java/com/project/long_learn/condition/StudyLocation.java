@@ -29,10 +29,10 @@ public class StudyLocation implements Comparable<StudyLocation> {
     }
 
     public boolean isStudyLocationNull() {
-        return latitude == 0 && longitude == 0;
+        return (latitude == 0 || longitude == 0) && name == null;
     }
 
-    public boolean contains(StudyLocation studyLocation){
+    public boolean contains(StudyLocation studyLocation) {
         return this.name.contains(studyLocation.name);
     }
 }
