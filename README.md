@@ -6,7 +6,9 @@
 5. ~~개발자들 간의 토론 - pull request, 리뷰 후 전부 OK 했을 때 적용~~
 6. 특이한 오류 및 내용 [블로그](https://lokie.tistory.com/category/%EB%A1%B1%EB%9F%B0%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8) 에 정리
 7. 리팩토링 (읽기좋은, 자바 8 이상 - stream, lambda 등)
-
+    - 내가 만든 코드를 사용할 사람 입장에서 생각해 볼 것
+    - 내가 만든 코드를 수정 또는 확장할 개발자 입장에서 생각해 볼 것
+    
 ## 개발 스펙
 1. Server
     - 스프링
