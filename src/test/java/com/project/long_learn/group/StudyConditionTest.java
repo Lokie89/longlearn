@@ -70,14 +70,14 @@ class StudyConditionTest {
     void essentialStudyException() {
 
         final StudyCondition.Builder builder = new StudyCondition.Builder();
-        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(1970,01,01).end(1970,01,02).studyDay(null).location(null).build()));
-        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(1970,01,01).end(1970,01,02).studyDay(null).location(null).start(2020,9,22).build()));
-        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(1970,01,01).end(1970,01,02).studyDay(null).location(null).end(2020,9,22).build()));
-        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(1970,01,01).end(1970,01,02).studyDay(null).location(null).studyDay(StudyDay.of(DayOfWeek.FRIDAY)).build()));
-        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(1970,01,01).end(1970,01,02).studyDay(null).location(null).location(StudyLocation.of(1,1)).build()));
-        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(1970,01,01).end(1970,01,02).studyDay(null).location(null).start(2020,9,22).end(2020,9,22).build()));
-        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(1970,01,01).end(1970,01,02).studyDay(null).location(null).start(2020,9,21).end(2020,9,22).build()));
-        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(1970,01,01).end(1970,01,02).studyDay(null).location(null).start(2020,9,21).end(2020,9,22).build()));
+        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(1970,01,01).end(1970,01,02).studyDay().location(null).build()));
+        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(1970,01,01).end(1970,01,02).studyDay().location(null).start(2020,9,22).build()));
+        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(1970,01,01).end(1970,01,02).studyDay().location(null).end(2020,9,22).build()));
+        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(1970,01,01).end(1970,01,02).studyDay().location(null).studyDay(StudyDay.of(DayOfWeek.FRIDAY)).build()));
+        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(1970,01,01).end(1970,01,02).studyDay().location(null).location(StudyLocation.of(1,1)).build()));
+        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(1970,01,01).end(1970,01,02).studyDay().location(null).start(2020,9,22).end(2020,9,22).build()));
+        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(1970,01,01).end(1970,01,02).studyDay().location(null).start(2020,9,21).end(2020,9,22).build()));
+        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(1970,01,01).end(1970,01,02).studyDay().location(null).start(2020,9,21).end(2020,9,22).build()));
     }
 
 }
