@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class VolunteerTest {
 
     Volunteer volunteer = new Volunteer(new Member(3), VolunteerRole.TEACHER);
-    StudyCondition.Builder defaultBuilder = new StudyCondition.Builder().start(2020, 8, 18).end(2020,9,22).studyDay(new StudyDays(StudyDay.of(DayOfWeek.FRIDAY))).location(StudyLocation.of("강남"));
+    StudyCondition.Builder defaultBuilder = new StudyCondition.Builder().start(2020, 8, 18).end(2020,9,22).studyDay(StudyDay.of(DayOfWeek.FRIDAY)).location(StudyLocation.of("강남"));
     Study study = new Study(6, defaultBuilder.location(StudyLocation.of("강남")).minTeacher(3).recruitmentLimit(2020,8,10,00,00).build());
 
     @BeforeEach
