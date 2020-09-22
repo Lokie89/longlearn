@@ -13,8 +13,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,8 +24,8 @@ public class Scene1Test {
     void setUp() {
         List<Study> groupList = new ArrayList<>();
         StudyCondition.Builder dumpBuilder = new StudyCondition.Builder()
-                .start(LocalDate.of(2020, 9, 10))
-                .end(LocalDate.of(2020, 10, 10))
+                .start(2020,9,22)
+                .end(2020,9,22)
                 .description("Dump Study")
                 .location(new StudyLocation(1, 1, "강남"))
                 .costPerClass(15000)
@@ -35,7 +33,7 @@ public class Scene1Test {
                 .maxStudent(10)
                 .minTeacher(0)
                 .maxTeacher(5)
-                .recruitmentLimit(LocalDateTime.now().plusDays(2))
+                .recruitmentLimit(2020,9,21,00,00)
                 .studyDay(new StudyDays(StudyDay.of(DayOfWeek.SUNDAY), StudyDay.of(DayOfWeek.TUESDAY)));
 
         for (int i = 0; i < 100; i++) {
@@ -44,10 +42,10 @@ public class Scene1Test {
 
         Study flowerStudy = new Study(101,
                 new StudyCondition.Builder()
-                        .start(LocalDate.of(2020, 9, 30))
-                        .end(LocalDate.of(2020, 11, 30))
+                        .start(2020,9,30)
+                        .end(2020, 11, 30)
                         .costPerClass(10000)
-                        .recruitmentLimit(LocalDateTime.now().plusDays(2))
+                        .recruitmentLimit(2020,9,28,00,00)
                         .description("꽃꽂이 클래스")
                         .minTeacher(1)
                         .location(new StudyLocation(127.3534, 39.78144, "강남역"))

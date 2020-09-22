@@ -4,6 +4,7 @@ import com.project.long_learn.condition.exception.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Comparator;
 import java.util.Objects;
 
@@ -50,7 +51,7 @@ public class StudyCondition implements Condition {
         if (costPerClass < 0) {
             throw new StudyCostArrangeException();
         }
-        if (recruitmentLimit.isBefore(LocalDateTime.now())) {
+        if (recruitmentLimit.isAfter(LocalDateTime.of(start, LocalTime.MIDNIGHT))) {
             throw new StudyRecruitmentLimitArrangeException();
         }
     }
@@ -83,13 +84,13 @@ public class StudyCondition implements Condition {
 
         private LocalDateTime recruitmentLimit;
 
-        public Builder start(LocalDate start) {
-            this.start = start;
+        public Builder start(int year, int month, int dayOfMonth) {
+            this.start = LocalDate.of(year, month, dayOfMonth);
             return this;
         }
 
-        public Builder end(LocalDate end) {
-            this.end = end;
+        public Builder end(int year, int month, int dayOfMonth) {
+            this.end = LocalDate.of(year, month, dayOfMonth);
             return this;
         }
 
@@ -135,8 +136,8 @@ public class StudyCondition implements Condition {
             return this;
         }
 
-        public Builder recruitmentLimit(LocalDateTime recruitmentLimit) {
-            this.recruitmentLimit = recruitmentLimit;
+        public Builder recruitmentLimit(int year, int month, int dayOfMonth, int hour, int minute) {
+            this.recruitmentLimit = LocalDateTime.of(year, month, dayOfMonth, hour, minute);
             return this;
         }
 
