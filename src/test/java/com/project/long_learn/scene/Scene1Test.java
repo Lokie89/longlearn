@@ -27,7 +27,7 @@ public class Scene1Test {
                 .start(2020,9,22)
                 .end(2020,9,22)
                 .description("Dump Study")
-                .location(new StudyLocation(1, 1, "강남"))
+                .location(StudyLocation.of("강남"))
                 .costPerClass(15000)
                 .minStudent(4)
                 .maxStudent(10)
@@ -48,7 +48,7 @@ public class Scene1Test {
                         .recruitmentLimit(2020,9,28,00,00)
                         .description("꽃꽂이 클래스")
                         .minTeacher(1)
-                        .location(new StudyLocation(127.3534, 39.78144, "강남역"))
+                        .location(StudyLocation.of("강남역"))
                         .studyDay(new StudyDays(StudyDay.of(DayOfWeek.MONDAY, 19, 00, 21, 00), StudyDay.of(DayOfWeek.TUESDAY, 19, 00, 20, 00)))
                         .build());
 
