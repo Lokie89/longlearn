@@ -62,13 +62,43 @@ public class Scene1Test {
     }
 
     @Test
-    void scene1() {
+    void scene1_1() {
         StudyCondition filterCondition
                 = new StudyCondition.Builder()
                 .description("꽃꽂이")
-                .location(new StudyLocation("강남"))
+                .location(StudyLocation.of("강남"))
                 .minTeacher(1)
                 .studyDay(new StudyDays(StudyDay.of(DayOfWeek.MONDAY, 19, 00, 21, 00), StudyDay.of(DayOfWeek.TUESDAY, 19, 00, 20, 00)))
+                .build();
+        Assertions.assertTrue(studyList.size() == 101);
+        Assertions.assertTrue(studyList.filter(filterCondition).size() == 1);
+    }
+
+    @Test
+    void scene1_2(){
+        StudyCondition filterCondition
+                = new StudyCondition.Builder()
+                .description("꽃꽂이")
+                .build();
+        Assertions.assertTrue(studyList.size() == 101);
+        Assertions.assertTrue(studyList.filter(filterCondition).size() == 1);
+    }
+
+    @Test
+    void scene1_3(){
+        StudyCondition filterCondition
+                = new StudyCondition.Builder()
+                .studyDay(new StudyDays(StudyDay.of(DayOfWeek.MONDAY, 19, 00, 21, 00), StudyDay.of(DayOfWeek.TUESDAY, 19, 00, 20, 00)))
+                .build();
+        Assertions.assertTrue(studyList.size() == 101);
+        Assertions.assertTrue(studyList.filter(filterCondition).size() == 1);
+    }
+
+    @Test
+    void scene1_4(){
+        StudyCondition filterCondition
+                = new StudyCondition.Builder()
+                .location(StudyLocation.of("강남역"))
                 .build();
         Assertions.assertTrue(studyList.size() == 101);
         Assertions.assertTrue(studyList.filter(filterCondition).size() == 1);
