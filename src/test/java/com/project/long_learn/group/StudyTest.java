@@ -2,10 +2,7 @@ package com.project.long_learn.group;
 
 import com.project.long_learn.apply.Volunteer;
 import com.project.long_learn.apply.VolunteerRole;
-import com.project.long_learn.condition.StudyCondition;
-import com.project.long_learn.condition.StudyDay;
-import com.project.long_learn.condition.StudyDays;
-import com.project.long_learn.condition.StudyLocation;
+import com.project.long_learn.condition.*;
 import com.project.long_learn.domain.Member;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -29,15 +26,15 @@ class StudyTest {
 
     @Test
     void involve() {
-        study.involve(new Volunteer(new Member(3), VolunteerRole.STUDENT));
+        study.involve(new Volunteer(new Member(3), VolunteerCondition.of(VolunteerRole.STUDENT)));
     }
 
     @Test
     void cannotApplyStudyException() {
-        Volunteer volunteer1 = new Volunteer(new Member(1), VolunteerRole.STUDENT);
-        Volunteer volunteer2 = new Volunteer(new Member(2), VolunteerRole.STUDENT);
-        Volunteer volunteer3 = new Volunteer(new Member(3), VolunteerRole.STUDENT);
-        Volunteer volunteer4 = new Volunteer(new Member(4), VolunteerRole.STUDENT);
+        Volunteer volunteer1 = new Volunteer(new Member(1), VolunteerCondition.of(VolunteerRole.STUDENT));
+        Volunteer volunteer2 = new Volunteer(new Member(2), VolunteerCondition.of(VolunteerRole.STUDENT));
+        Volunteer volunteer3 = new Volunteer(new Member(3), VolunteerCondition.of(VolunteerRole.STUDENT));
+        Volunteer volunteer4 = new Volunteer(new Member(4), VolunteerCondition.of(VolunteerRole.STUDENT));
 
         study.involve(volunteer1);
         study.involve(volunteer2);
@@ -49,8 +46,8 @@ class StudyTest {
 
     @Test
     void alreadyApplyVolunteerException() {
-        Volunteer volunteer1 = new Volunteer(new Member(1), VolunteerRole.STUDENT);
-        Volunteer volunteer2 = new Volunteer(new Member(1), VolunteerRole.STUDENT);
+        Volunteer volunteer1 = new Volunteer(new Member(1), VolunteerCondition.of(VolunteerRole.STUDENT));
+        Volunteer volunteer2 = new Volunteer(new Member(1), VolunteerCondition.of(VolunteerRole.STUDENT));
 
         study.involve(volunteer1);
         Assertions.assertThrows(AlreadyApplyVolunteerException.class, () -> study.involve(volunteer2));
@@ -64,9 +61,9 @@ class StudyTest {
     @Test
     void enoughTeacherTest(){
         Study study = new Study(5, defaultBuilder.maxStudent(3).minTeacher(1).build());
-        Volunteer volunteer1 = new Volunteer(new Member(1), VolunteerRole.TEACHER);
+        Volunteer volunteer1 = new Volunteer(new Member(1), VolunteerCondition.of(VolunteerRole.TEACHER));
 
-        Volunteer volunteer2 = new Volunteer(new Member(2), VolunteerRole.TEACHER);
+        Volunteer volunteer2 = new Volunteer(new Member(2), VolunteerCondition.of(VolunteerRole.TEACHER));
 
         study.involve(volunteer1);
         Assertions.assertThrows(CannotApplyStudyException.class, () -> study.involve(volunteer2));

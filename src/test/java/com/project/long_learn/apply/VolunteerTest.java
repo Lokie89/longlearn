@@ -3,6 +3,7 @@ package com.project.long_learn.apply;
 import com.project.long_learn.condition.StudyCondition;
 import com.project.long_learn.condition.StudyDay;
 import com.project.long_learn.condition.StudyLocation;
+import com.project.long_learn.condition.VolunteerCondition;
 import com.project.long_learn.domain.Member;
 import com.project.long_learn.group.Study;
 import org.junit.jupiter.api.AfterEach;
@@ -15,7 +16,7 @@ import java.time.DayOfWeek;
 
 class VolunteerTest {
 
-    Volunteer volunteer = new Volunteer(new Member(3), VolunteerRole.TEACHER);
+    Volunteer volunteer = new Volunteer(new Member(3), VolunteerCondition.of(VolunteerRole.TEACHER));
     StudyCondition.Builder defaultBuilder = new StudyCondition.Builder().start(2020, 8, 18).end(2020,9,22).studyDay(StudyDay.of(DayOfWeek.FRIDAY)).location(StudyLocation.of("강남"));
     Study study = new Study(6, defaultBuilder.location(StudyLocation.of("강남")).minTeacher(3).recruitmentLimit(2020,8,10,00,00).build());
 

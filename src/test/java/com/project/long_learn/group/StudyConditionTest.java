@@ -2,7 +2,6 @@ package com.project.long_learn.group;
 
 import com.project.long_learn.condition.StudyCondition;
 import com.project.long_learn.condition.StudyDay;
-import com.project.long_learn.condition.StudyDays;
 import com.project.long_learn.condition.StudyLocation;
 import com.project.long_learn.grouplist.StudyList;
 import org.junit.jupiter.api.AfterEach;
@@ -63,7 +62,7 @@ class StudyConditionTest {
     @Test
     void sortTest1() {
         StudyList groupList = new StudyList(studyList);
-        groupList.sort(StudyCondition.StudyInformationComparator.MINSTUDENT);
+        groupList.sort(StudyCondition.StudyConditionComparator.MINSTUDENT);
     }
 
     @Test

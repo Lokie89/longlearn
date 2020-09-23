@@ -1,9 +1,13 @@
 package com.project.long_learn.apply;
 
+import com.project.long_learn.condition.Condition;
+import com.project.long_learn.grouplist.GroupList;
+
+import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class VolunteerSet {
+public class VolunteerSet implements GroupList {
     private final Set<Volunteer> volunteers = new LinkedHashSet<>();
 
     public void add(Volunteer volunteer) {
@@ -14,10 +18,6 @@ public class VolunteerSet {
         return volunteers.contains(volunteer);
     }
 
-    public int size() {
-        return volunteers.size();
-    }
-
     public void remove(Volunteer volunteer) {
         volunteers.remove(volunteer);
     }
@@ -26,5 +26,20 @@ public class VolunteerSet {
         return volunteers.stream()
                 .filter(Volunteer::isTeacher)
                 .count() >= minTeacher;
+    }
+
+    @Override
+    public int size() {
+        return volunteers.size();
+    }
+
+    @Override
+    public GroupList filter(Condition condition) {
+        return null;
+    }
+
+    @Override
+    public GroupList sort(Comparator comparator) {
+        return null;
     }
 }

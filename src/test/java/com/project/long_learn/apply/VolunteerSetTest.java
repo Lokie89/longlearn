@@ -1,6 +1,8 @@
 package com.project.long_learn.apply;
 
+import com.project.long_learn.condition.VolunteerCondition;
 import com.project.long_learn.domain.Member;
+import com.project.long_learn.grouplist.VolunteerSet;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,9 +16,9 @@ class VolunteerSetTest {
 
     @BeforeEach
     void setUp() {
-        volunteerSet.add(new Volunteer(new Member(3), VolunteerRole.STUDENT));
-        volunteerSet.add(new Volunteer(new Member(4), VolunteerRole.STUDENT));
-        volunteerSet.add(new Volunteer(new Member(5), VolunteerRole.STUDENT));
+        volunteerSet.add(new Volunteer(new Member(3), VolunteerCondition.of(VolunteerRole.STUDENT)));
+        volunteerSet.add(new Volunteer(new Member(4), VolunteerCondition.of(VolunteerRole.STUDENT)));
+        volunteerSet.add(new Volunteer(new Member(5), VolunteerCondition.of(VolunteerRole.STUDENT)));
     }
 
     @AfterEach
@@ -25,9 +27,9 @@ class VolunteerSetTest {
 
     @Test
     void contains() {
-        assertTrue(volunteerSet.contains(new Volunteer(new Member(3), VolunteerRole.STUDENT)));
-        assertTrue(volunteerSet.contains(new Volunteer(new Member(3), VolunteerRole.TEACHER)));
-        assertTrue(volunteerSet.contains(new Volunteer(new Member(5), VolunteerRole.STUDENT)));
+        assertTrue(volunteerSet.contains(new Volunteer(new Member(3), VolunteerCondition.of(VolunteerRole.STUDENT))));
+        assertTrue(volunteerSet.contains(new Volunteer(new Member(3), VolunteerCondition.of(VolunteerRole.TEACHER))));
+        assertTrue(volunteerSet.contains(new Volunteer(new Member(5), VolunteerCondition.of(VolunteerRole.STUDENT))));
     }
 
     @Test
@@ -37,8 +39,8 @@ class VolunteerSetTest {
 
     @Test
     void size2(){
-        volunteerSet.remove(new Volunteer(new Member(3), VolunteerRole.STUDENT));
-        volunteerSet.remove(new Volunteer(new Member(3), VolunteerRole.TEACHER));
+        volunteerSet.remove(new Volunteer(new Member(3), VolunteerCondition.of(VolunteerRole.STUDENT)));
+        volunteerSet.remove(new Volunteer(new Member(3), VolunteerCondition.of(VolunteerRole.TEACHER)));
         assertEquals(2, volunteerSet.size());
     }
 }

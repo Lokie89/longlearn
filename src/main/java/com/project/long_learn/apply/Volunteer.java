@@ -1,5 +1,6 @@
 package com.project.long_learn.apply;
 
+import com.project.long_learn.condition.VolunteerCondition;
 import com.project.long_learn.domain.Member;
 
 /**
@@ -8,11 +9,11 @@ import com.project.long_learn.domain.Member;
  */
 public class Volunteer implements Apply {
     private Member member;
-    private final VolunteerRole volunteerRole;
+    private VolunteerCondition volunteerCondition;
 
-    public Volunteer(Member member, VolunteerRole volunteerRole) {
+    public Volunteer(Member member, VolunteerCondition volunteerCondition) {
+        this.volunteerCondition = volunteerCondition;
         this.member = member;
-        this.volunteerRole = volunteerRole;
     }
 
     @Override
@@ -40,6 +41,6 @@ public class Volunteer implements Apply {
     }
 
     public boolean isTeacher() {
-        return volunteerRole.equals(VolunteerRole.TEACHER);
+        return volunteerCondition.isSatisfiedCondition(VolunteerCondition.of(VolunteerRole.TEACHER));
     }
 }
