@@ -171,12 +171,12 @@ public class StudyCondition implements Condition {
         if (!(condition instanceof StudyCondition)) {
             return 0;
         }
-        if (!(comparator instanceof StudyInformationComparator)) {
+        if (!(comparator instanceof StudyConditionComparator)) {
             return 0;
         }
         StudyCondition info = (StudyCondition) condition;
-        StudyInformationComparator studyInformationComparator = (StudyInformationComparator) comparator;
-        return studyInformationComparator.compare(this, info);
+        StudyConditionComparator studyConditionComparator = (StudyConditionComparator) comparator;
+        return studyConditionComparator.compare(this, info);
     }
 
     private StudyCondition(Builder builder) {
@@ -193,7 +193,7 @@ public class StudyCondition implements Condition {
         this.recruitmentLimit = builder.recruitmentLimit;
     }
 
-    public enum StudyInformationComparator implements Comparator<StudyCondition> {
+    public enum StudyConditionComparator implements Comparator<StudyCondition> {
         START {
             @Override
             public int compare(StudyCondition o1, StudyCondition o2) {
