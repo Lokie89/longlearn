@@ -6,6 +6,8 @@ import com.project.long_learn.apply.VolunteerRole;
 import com.project.long_learn.condition.Condition;
 import com.project.long_learn.condition.StudyCondition;
 import com.project.long_learn.condition.VolunteerCondition;
+import com.project.long_learn.condition.exception.StudyStudentArrangeException;
+import com.project.long_learn.condition.exception.StudyTeacherArrangeException;
 
 import java.util.Comparator;
 
@@ -21,54 +23,37 @@ public class Study implements Group<Volunteer> {
         this.studyCondition = studyCondition;
     }
 
+    public void confirm() {
+        validateStudy();
+    }
+
+    private void validateStudy() {
+        validateParticipated();
+    }
+
+    private void validateParticipated() {
+        validateParticipatedStudent();
+        validateParticipatedTeacher();
+    }
+
+    private void validateParticipatedStudent() {
+        final int participatedStudent = volunteerSet.filter(VolunteerCondition.of(VolunteerRole.STUDENT, true)).size();
+        if (studyCondition.isSatisfiedStudentArrange(participatedStudent)) {
+            throw new StudyStudentArrangeException();
+        }
+    }
+
+    private void validateParticipatedTeacher() {
+        final int participatedTeacher = volunteerSet.filter(VolunteerCondition.of(VolunteerRole.TEACHER, true)).size();
+        if (studyCondition.isSatisfiedTeacherArrange(participatedTeacher)) {
+            throw new StudyTeacherArrangeException();
+        }
+    }
+
     @Override
     public void involve(Volunteer volunteer) {
-        validateAddVolunteer(volunteer);
-        validateAddCondition();
-        validateLectureStudy(volunteer);
-        validateEnoughTeacher(volunteer);
         volunteerSet.add(volunteer);
         volunteer.apply(studyId);
-    }
-
-    private void validateAddVolunteer(Volunteer volunteer) {
-        if (volunteerSet.contains(volunteer)) {
-            throw new AlreadyApplyVolunteerException();
-        }
-    }
-
-    private void validateAddCondition() {
-        if (isFullVolunteerStudyCondition()) {
-            throw new CannotApplyStudyException();
-        }
-    }
-
-    private boolean isFullVolunteerStudyCondition() {
-        return studyCondition.getMax() != 0 && vacancy() == 0;
-    }
-
-    private void validateEnoughTeacher(Volunteer volunteer) {
-        if (volunteer.isSatisfiedCondition(VolunteerCondition.of(VolunteerRole.TEACHER))
-                && enoughTeacher()) {
-            throw new CannotApplyStudyException();
-        }
-    }
-
-    private void validateLectureStudy(Volunteer volunteer) {
-        if (!enoughTeacher()
-                && !volunteer.isSatisfiedCondition(VolunteerCondition.of(VolunteerRole.TEACHER))
-                && studyCondition.isLectureStudy()
-                && !isVacantForTeacher()) {
-            throw new CannotApplyStudyException();
-        }
-    }
-
-    private boolean isVacantForTeacher() {
-        return vacancy() > studyCondition.getMinTeacher();
-    }
-
-    private boolean enoughTeacher() {
-        return volunteerSet.enoughTeacher(studyCondition.getMinTeacher());
     }
 
     @Override
@@ -91,17 +76,6 @@ public class Study implements Group<Volunteer> {
         return this.studyCondition.compareCondition(study.studyCondition, comparator);
     }
 
-    public boolean isVacant() {
-        return vacancy() > 0;
-    }
-
-    public int vacancy() {
-        final int max = studyCondition.getMax();
-        if (max == 0) {
-            return max;
-        }
-        return max - volunteerSet.size();
-    }
 
     @Override
     public boolean equals(Object obj) {

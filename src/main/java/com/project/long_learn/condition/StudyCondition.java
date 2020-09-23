@@ -56,16 +56,12 @@ public class StudyCondition implements Condition {
         }
     }
 
-    public int getMax() {
-        return maxStudent + maxTeacher;
+    public boolean isSatisfiedStudentArrange(int participatedStudent) {
+        return participatedStudent >= minStudent && participatedStudent <= maxStudent;
     }
 
-    public boolean isLectureStudy() {
-        return minTeacher > 0;
-    }
-
-    public int getMinTeacher() {
-        return minTeacher;
+    public boolean isSatisfiedTeacherArrange(int participatedTeacher) {
+        return participatedTeacher >= minTeacher && participatedTeacher <= maxTeacher;
     }
 
     public static class Builder {
@@ -111,7 +107,6 @@ public class StudyCondition implements Condition {
 
         public Builder minStudent(int minStudent) {
             this.minStudent = minStudent;
-            this.maxStudent = maxStudent == 0 ? Integer.MAX_VALUE : maxStudent;
             return this;
         }
 
@@ -122,7 +117,6 @@ public class StudyCondition implements Condition {
 
         public Builder minTeacher(int minTeacher) {
             this.minTeacher = minTeacher;
-            this.maxTeacher = maxTeacher == 0 ? Integer.MAX_VALUE : maxTeacher;
             return this;
         }
 

@@ -22,6 +22,10 @@ public class VolunteerCondition implements Condition {
         return new VolunteerCondition(volunteerRole, false);
     }
 
+    public void participate(){
+        participated = true;
+    }
+
     @Override
     public boolean isSatisfiedCondition(Condition condition) {
         if (!(condition instanceof VolunteerCondition)) {
