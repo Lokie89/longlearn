@@ -33,7 +33,7 @@ public class Scene1Test {
                 .minTeacher(0)
                 .maxTeacher(5)
                 .recruitmentLimit(2020,9,21,00,00)
-                .studyDay(StudyDay.of(DayOfWeek.SUNDAY), StudyDay.of(DayOfWeek.TUESDAY));
+                .day(StudyDay.of(DayOfWeek.SUNDAY), StudyDay.of(DayOfWeek.TUESDAY));
 
         for (int i = 0; i < 100; i++) {
             groupList.add(new Study(i, dumpBuilder.build()));
@@ -48,7 +48,7 @@ public class Scene1Test {
                         .description("꽃꽂이 클래스")
                         .minTeacher(1)
                         .location(StudyLocation.of("강남역"))
-                        .studyDay(StudyDay.of(DayOfWeek.MONDAY, 19, 00, 21, 00), StudyDay.of(DayOfWeek.TUESDAY, 19, 00, 20, 00))
+                        .day(StudyDay.of(DayOfWeek.MONDAY, 19, 00, 21, 00), StudyDay.of(DayOfWeek.TUESDAY, 19, 00, 20, 00))
                         .build());
 
         groupList.add(flowerStudy);
@@ -67,7 +67,7 @@ public class Scene1Test {
                 .description("꽃꽂이")
                 .location(StudyLocation.of("강남"))
                 .minTeacher(1)
-                .studyDay(StudyDay.of(DayOfWeek.MONDAY, 19, 00, 21, 00), StudyDay.of(DayOfWeek.TUESDAY, 19, 00, 20, 00))
+                .day(StudyDay.of(DayOfWeek.MONDAY, 19, 00, 21, 00), StudyDay.of(DayOfWeek.TUESDAY, 19, 00, 20, 00))
                 .build();
         Assertions.assertTrue(studyList.size() == 101);
         Assertions.assertTrue(studyList.filter(filterCondition).size() == 1);
@@ -87,7 +87,7 @@ public class Scene1Test {
     void scene1_3(){
         StudyCondition filterCondition
                 = new StudyCondition.Builder()
-                .studyDay(StudyDay.of(DayOfWeek.MONDAY, 19, 00, 21, 00), StudyDay.of(DayOfWeek.TUESDAY, 19, 00, 20, 00))
+                .day(StudyDay.of(DayOfWeek.MONDAY, 19, 00, 21, 00), StudyDay.of(DayOfWeek.TUESDAY, 19, 00, 20, 00))
                 .build();
         Assertions.assertTrue(studyList.size() == 101);
         Assertions.assertTrue(studyList.filter(filterCondition).size() == 1);

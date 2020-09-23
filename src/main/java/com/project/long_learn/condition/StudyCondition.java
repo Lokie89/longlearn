@@ -94,7 +94,7 @@ public class StudyCondition implements Condition {
             return this;
         }
 
-        public Builder studyDay(StudyDay... studyDays) {
+        public Builder day(StudyDay... studyDays) {
             this.studyDays = new StudyDays(studyDays);
             return this;
         }
