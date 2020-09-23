@@ -171,12 +171,8 @@ public class StudyCondition implements Condition {
         if (!(condition instanceof StudyCondition)) {
             return 0;
         }
-        if (!(comparator instanceof StudyConditionComparator)) {
-            return 0;
-        }
         StudyCondition info = (StudyCondition) condition;
-        StudyConditionComparator studyConditionComparator = (StudyConditionComparator) comparator;
-        return studyConditionComparator.compare(this, info);
+        return comparator.compare(this, info);
     }
 
     private StudyCondition(Builder builder) {

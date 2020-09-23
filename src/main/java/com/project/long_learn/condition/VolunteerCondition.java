@@ -36,12 +36,8 @@ public class VolunteerCondition implements Condition {
         if (!(condition instanceof VolunteerCondition)) {
             return 0;
         }
-        if (!(comparator instanceof VolunteerConditionComparator)) {
-            return 0;
-        }
         VolunteerCondition vc = (VolunteerCondition) condition;
-        VolunteerCondition.VolunteerConditionComparator vcComparator = (VolunteerCondition.VolunteerConditionComparator) comparator;
-        return vcComparator.compare(this, vc);
+        return comparator.compare(this, vc);
     }
 
     public enum VolunteerConditionComparator implements Comparator<VolunteerCondition> {
