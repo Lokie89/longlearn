@@ -6,9 +6,10 @@ import com.project.long_learn.condition.Condition;
 import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-public class VolunteerSet implements GroupList {
-    private final Set<Volunteer> volunteers = new LinkedHashSet<>();
+public class VolunteerSet implements Alignable {
+    private Set<Volunteer> volunteers = new LinkedHashSet<>();
 
     public void add(Volunteer volunteer) {
         volunteers.add(volunteer);
@@ -34,12 +35,20 @@ public class VolunteerSet implements GroupList {
     }
 
     @Override
-    public GroupList filter(Condition condition) {
-        return null;
+    public Alignable filter(Condition condition) {
+        volunteers = volunteers
+                .stream()
+                .filter((volunteer) -> volunteer.isSatisfiedCondition(condition))
+                .collect(Collectors.toCollection(LinkedHashSet::new));
+        return this;
     }
 
     @Override
-    public GroupList sort(Comparator comparator) {
-        return null;
+    public Alignable sort(Comparator comparator) {
+        volunteers = volunteers
+                .stream()
+                .sorted((o1, o2) -> o1.compareInformation(o2, comparator))
+                .collect(Collectors.toCollection(LinkedHashSet::new));
+        return this;
     }
 }
