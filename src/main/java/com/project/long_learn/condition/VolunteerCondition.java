@@ -52,8 +52,7 @@ public class VolunteerCondition implements Condition {
             public int compare(VolunteerCondition o1, VolunteerCondition o2) {
                 return o1.participated.compareTo(o2.participated);
             }
-        };
-
-
+        },
+        ;
     }
 }
