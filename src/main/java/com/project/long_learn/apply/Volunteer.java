@@ -46,4 +46,13 @@ public class Volunteer implements Apply {
     public boolean isTeacher() {
         return volunteerCondition.isSatisfiedCondition(VolunteerCondition.of(VolunteerRole.TEACHER));
     }
+
+    public boolean isSatisfiedCondition(Condition condition) {
+        return this.volunteerCondition.isSatisfiedCondition(condition);
+    }
+
+    public int compareCondition(Volunteer volunteer, Comparator comparator) {
+        return this.volunteerCondition.compareCondition(volunteer.volunteerCondition, comparator);
+    }
+
 }
