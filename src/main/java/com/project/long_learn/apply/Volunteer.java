@@ -1,7 +1,10 @@
 package com.project.long_learn.apply;
 
+import com.project.long_learn.condition.Condition;
 import com.project.long_learn.condition.VolunteerCondition;
 import com.project.long_learn.domain.Member;
+
+import java.util.Comparator;
 
 /**
  * 지원자
@@ -9,7 +12,7 @@ import com.project.long_learn.domain.Member;
  */
 public class Volunteer implements Apply {
     private Member member;
-    private VolunteerCondition volunteerCondition;
+    private Condition volunteerCondition;
 
     public Volunteer(Member member, VolunteerCondition volunteerCondition) {
         this.volunteerCondition = volunteerCondition;

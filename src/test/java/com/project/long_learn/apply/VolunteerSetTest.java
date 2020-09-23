@@ -2,7 +2,7 @@ package com.project.long_learn.apply;
 
 import com.project.long_learn.condition.VolunteerCondition;
 import com.project.long_learn.domain.Member;
-import com.project.long_learn.grouplist.VolunteerSet;
+import com.project.long_learn.alignable.VolunteerSet;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

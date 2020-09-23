@@ -1,4 +1,4 @@
-package com.project.long_learn.grouplist;
+package com.project.long_learn.alignable;
 
 import com.project.long_learn.condition.Condition;
 import com.project.long_learn.group.Study;
@@ -16,16 +16,16 @@ public class StudyList implements Alignable {
     }
 
     @Override
-    public StudyList filter(Condition condition) {
+    public Alignable filter(Condition condition) {
         studyList = studyList.stream()
-                .filter(study -> study.isSatisfiedInformation(condition))
+                .filter(study -> study.isSatisfiedCondition(condition))
                 .collect(Collectors.toList());
         return this;
     }
 
     @Override
-    public StudyList sort(Comparator comparator) {
-        studyList.sort((o1, o2) -> o1.compareInformation(o2, comparator));
+    public Alignable sort(Comparator comparator) {
+        studyList.sort((o1, o2) -> o1.compareCondition(o2, comparator));
         return this;
     }
 

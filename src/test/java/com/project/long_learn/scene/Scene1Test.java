@@ -2,11 +2,10 @@ package com.project.long_learn.scene;
 
 import com.project.long_learn.condition.StudyCondition;
 import com.project.long_learn.condition.StudyDay;
-import com.project.long_learn.condition.StudyDays;
 import com.project.long_learn.condition.StudyLocation;
 import com.project.long_learn.group.Study;
-import com.project.long_learn.grouplist.GroupList;
-import com.project.long_learn.grouplist.StudyList;
+import com.project.long_learn.alignable.Alignable;
+import com.project.long_learn.alignable.StudyList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +17,7 @@ import java.util.List;
 
 public class Scene1Test {
     // SCENE #1 Test
-    GroupList studyList;
+    Alignable studyList;
 
     @BeforeEach
     void setUp() {

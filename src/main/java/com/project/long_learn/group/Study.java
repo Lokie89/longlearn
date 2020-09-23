@@ -1,7 +1,7 @@
 package com.project.long_learn.group;
 
 import com.project.long_learn.apply.Volunteer;
-import com.project.long_learn.grouplist.VolunteerSet;
+import com.project.long_learn.alignable.VolunteerSet;
 import com.project.long_learn.condition.Condition;
 import com.project.long_learn.condition.StudyCondition;
 
@@ -79,11 +79,11 @@ public class Study implements Group<Volunteer> {
     }
 
 
-    public boolean isSatisfiedInformation(Condition condition) {
+    public boolean isSatisfiedCondition(Condition condition) {
         return this.studyCondition.isSatisfiedCondition(condition);
     }
 
-    public int compareInformation(Study study, Comparator comparator) {
+    public int compareCondition(Study study, Comparator comparator) {
         return this.studyCondition.compareCondition(study.studyCondition, comparator);
     }
 

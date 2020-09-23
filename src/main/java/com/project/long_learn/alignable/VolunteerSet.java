@@ -1,4 +1,4 @@
-package com.project.long_learn.grouplist;
+package com.project.long_learn.alignable;
 
 import com.project.long_learn.apply.Volunteer;
 import com.project.long_learn.condition.Condition;
@@ -47,7 +47,7 @@ public class VolunteerSet implements Alignable {
     public Alignable sort(Comparator comparator) {
         volunteers = volunteers
                 .stream()
-                .sorted((o1, o2) -> o1.compareInformation(o2, comparator))
+                .sorted((o1, o2) -> o1.compareCondition(o2, comparator))
                 .collect(Collectors.toCollection(LinkedHashSet::new));
         return this;
     }
