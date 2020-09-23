@@ -1,7 +1,7 @@
-package com.project.long_learn.apply;
+package com.project.long_learn.grouplist;
 
+import com.project.long_learn.apply.Volunteer;
 import com.project.long_learn.condition.Condition;
-import com.project.long_learn.grouplist.GroupList;
 
 import java.util.Comparator;
 import java.util.LinkedHashSet;

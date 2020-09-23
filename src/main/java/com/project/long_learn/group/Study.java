@@ -1,7 +1,7 @@
 package com.project.long_learn.group;
 
 import com.project.long_learn.apply.Volunteer;
-import com.project.long_learn.apply.VolunteerSet;
+import com.project.long_learn.grouplist.VolunteerSet;
 import com.project.long_learn.condition.Condition;
 import com.project.long_learn.condition.StudyCondition;
 
