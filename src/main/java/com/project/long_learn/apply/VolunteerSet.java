@@ -22,13 +22,6 @@ public class VolunteerSet {
         volunteers.remove(volunteer);
     }
 
-    public boolean isContainTeachers() {
-        return volunteers.stream()
-                .filter(Volunteer::isTeacher)
-                .count() > 0
-                ;
-    }
-
     public boolean enoughTeacher(int minTeacher) {
         return volunteers.stream()
                 .filter(Volunteer::isTeacher)

@@ -19,7 +19,6 @@ public class Study implements Group<Volunteer> {
         this.studyCondition = studyCondition;
     }
 
-    //TODO : maxTeacher validate 추가
     @Override
     public void involve(Volunteer volunteer) {
         validateAddVolunteer(volunteer);
@@ -79,10 +78,6 @@ public class Study implements Group<Volunteer> {
         return volunteerSet.contains(volunteer);
     }
 
-
-    public boolean isContainTeacher() {
-        return volunteerSet.isContainTeachers();
-    }
 
     public boolean isSatisfiedInformation(Condition condition) {
         return this.studyCondition.isSatisfiedCondition(condition);

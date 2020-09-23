@@ -2,20 +2,15 @@ package com.project.long_learn.apply;
 
 import com.project.long_learn.condition.StudyCondition;
 import com.project.long_learn.condition.StudyDay;
-import com.project.long_learn.condition.StudyDays;
 import com.project.long_learn.condition.StudyLocation;
 import com.project.long_learn.domain.Member;
 import com.project.long_learn.group.Study;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 class VolunteerTest {
@@ -27,8 +22,7 @@ class VolunteerTest {
     @BeforeEach
     void setUp() {
         study.involve(volunteer);
-        study.isContain(volunteer);
-        assertTrue(study.isContainTeacher());
+        Assertions.assertTrue(study.isContain(volunteer));
     }
 
     @AfterEach
@@ -42,6 +36,6 @@ class VolunteerTest {
     @Test
     void refrain() {
         study.except(volunteer);
-        assertFalse(study.isContainTeacher());
+        Assertions.assertFalse(study.isContain(volunteer));
     }
 }
