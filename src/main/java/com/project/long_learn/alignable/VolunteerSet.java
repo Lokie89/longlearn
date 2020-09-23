@@ -1,7 +1,9 @@
 package com.project.long_learn.alignable;
 
 import com.project.long_learn.apply.Volunteer;
+import com.project.long_learn.apply.VolunteerRole;
 import com.project.long_learn.condition.Condition;
+import com.project.long_learn.condition.VolunteerCondition;
 
 import java.util.Comparator;
 import java.util.LinkedHashSet;
@@ -25,7 +27,7 @@ public class VolunteerSet implements Alignable {
 
     public boolean enoughTeacher(int minTeacher) {
         return volunteers.stream()
-                .filter(Volunteer::isTeacher)
+                .filter(volunteer -> volunteer.isSatisfiedCondition(VolunteerCondition.of(VolunteerRole.TEACHER)))
                 .count() >= minTeacher;
     }
 

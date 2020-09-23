@@ -43,10 +43,6 @@ public class Volunteer implements Apply {
         return member.hashCode();
     }
 
-    public boolean isTeacher() {
-        return volunteerCondition.isSatisfiedCondition(VolunteerCondition.of(VolunteerRole.TEACHER));
-    }
-
     public boolean isSatisfiedCondition(Condition condition) {
         return this.volunteerCondition.isSatisfiedCondition(condition);
     }

@@ -1,9 +1,11 @@
 package com.project.long_learn.group;
 
-import com.project.long_learn.apply.Volunteer;
 import com.project.long_learn.alignable.VolunteerSet;
+import com.project.long_learn.apply.Volunteer;
+import com.project.long_learn.apply.VolunteerRole;
 import com.project.long_learn.condition.Condition;
 import com.project.long_learn.condition.StudyCondition;
+import com.project.long_learn.condition.VolunteerCondition;
 
 import java.util.Comparator;
 
@@ -46,13 +48,15 @@ public class Study implements Group<Volunteer> {
     }
 
     private void validateEnoughTeacher(Volunteer volunteer) {
-        if (volunteer.isTeacher() && enoughTeacher()) {
+        if (volunteer.isSatisfiedCondition(VolunteerCondition.of(VolunteerRole.TEACHER))
+                && enoughTeacher()) {
             throw new CannotApplyStudyException();
         }
     }
 
     private void validateLectureStudy(Volunteer volunteer) {
-        if (!enoughTeacher() && !volunteer.isTeacher()
+        if (!enoughTeacher()
+                && !volunteer.isSatisfiedCondition(VolunteerCondition.of(VolunteerRole.TEACHER))
                 && studyCondition.isLectureStudy()
                 && !isVacantForTeacher()) {
             throw new CannotApplyStudyException();
