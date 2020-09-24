@@ -56,6 +56,7 @@ public class Study implements Group<Volunteer>, Confirm<Volunteer> {
     @Override
     public void involve(Volunteer volunteer) {
         validateAddVolunteer(volunteer);
+        validateRecruitment();
         volunteerSet.add(volunteer);
         volunteer.apply(studyId);
     }
@@ -63,6 +64,12 @@ public class Study implements Group<Volunteer>, Confirm<Volunteer> {
     private void validateAddVolunteer(Volunteer volunteer) {
         if (volunteerSet.contains(volunteer)) {
             throw new AlreadyApplyVolunteerException();
+        }
+    }
+
+    private void validateRecruitment() {
+        if (!studyCondition.isSatisfiedRecruitment()) {
+            throw new LateApplyStudyException();
         }
     }
 
@@ -103,12 +110,20 @@ public class Study implements Group<Volunteer>, Confirm<Volunteer> {
 
     @Override
     public void pass(Volunteer volunteer) {
-        volunteerSet.pass(volunteer);
+        validateAppliedVolunteer(volunteer);
+        volunteer.pass(studyId);
+    }
+
+    private void validateAppliedVolunteer(Volunteer volunteer) {
+        if (!volunteerSet.contains(volunteer)) {
+            throw new NotAppliedVolunteerException();
+        }
     }
 
     @Override
     public void fail(Volunteer volunteer) {
-        volunteerSet.fail(volunteer);
+        validateAppliedVolunteer(volunteer);
+        volunteer.fail(studyId);
     }
 
     public boolean isMaster(Member member) {

@@ -48,7 +48,10 @@ public class StudyCondition implements Condition {
         if (Objects.isNull(location) || location.isStudyLocationNull()) {
             throw new StudyLocationIsNullException();
         }
-        if (minStudent > maxStudent) {
+        if ((!isUnlimitedStudent() && maxStudent == 0) || minStudent > maxStudent) {
+            throw new StudyStudentArrangeException();
+        }
+        if ((!isUnlimitedTeacher() && maxTeacher == 0) || minTeacher > maxTeacher) {
             throw new StudyStudentArrangeException();
         }
         if (costPerClass < 0) {
@@ -62,16 +65,28 @@ public class StudyCondition implements Condition {
         }
     }
 
+    private boolean isUnlimitedStudent() {
+        return minStudent == 0 && maxStudent == 0;
+    }
+
+    private boolean isUnlimitedTeacher() {
+        return minTeacher == 0 && maxTeacher == 0;
+    }
+
     public boolean isMaster(Member master) {
         return this.master.equals(master);
     }
 
-    public boolean isSatisfiedStudentArrange(int participatedStudent) {
-        return participatedStudent >= minStudent && participatedStudent <= maxStudent;
+    public boolean isSatisfiedStudentArrange(int passedStudent) {
+        return passedStudent >= minStudent && passedStudent <= maxStudent;
     }
 
-    public boolean isSatisfiedTeacherArrange(int participatedTeacher) {
-        return participatedTeacher >= minTeacher && participatedTeacher <= maxTeacher;
+    public boolean isSatisfiedTeacherArrange(int passedTeacher) {
+        return passedTeacher >= minTeacher && passedTeacher <= maxTeacher;
+    }
+
+    public boolean isSatisfiedRecruitment() {
+        return recruitmentLimit.isAfter(LocalDateTime.now());
     }
 
     public static class Builder {
