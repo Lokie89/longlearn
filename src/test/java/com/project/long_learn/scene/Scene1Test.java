@@ -3,6 +3,7 @@ package com.project.long_learn.scene;
 import com.project.long_learn.condition.StudyCondition;
 import com.project.long_learn.condition.StudyDay;
 import com.project.long_learn.condition.StudyLocation;
+import com.project.long_learn.domain.Member;
 import com.project.long_learn.group.Study;
 import com.project.long_learn.alignable.Alignable;
 import com.project.long_learn.alignable.StudyList;
@@ -23,8 +24,8 @@ public class Scene1Test {
     void setUp() {
         List<Study> groupList = new ArrayList<>();
         StudyCondition.Builder dumpBuilder = new StudyCondition.Builder()
-                .start(2020,9,22)
-                .end(2020,9,22)
+                .start(2120,10,21)
+                .end(2120,11,21)
                 .description("Dump Study")
                 .location(StudyLocation.of("강남"))
                 .costPerClass(15000)
@@ -32,7 +33,8 @@ public class Scene1Test {
                 .maxStudent(10)
                 .minTeacher(0)
                 .maxTeacher(5)
-                .recruitmentLimit(2020,9,21,00,00)
+                .master(new Member(1))
+                .recruitmentLimit(2120,9,21,00,00)
                 .day(StudyDay.of(DayOfWeek.SUNDAY), StudyDay.of(DayOfWeek.TUESDAY));
 
         for (int i = 0; i < 100; i++) {
@@ -41,13 +43,15 @@ public class Scene1Test {
 
         Study flowerStudy = new Study(101,
                 new StudyCondition.Builder()
-                        .start(2020,9,30)
-                        .end(2020, 11, 30)
+                        .start(2120,10,28)
+                        .end(2120,11,28)
                         .costPerClass(10000)
-                        .recruitmentLimit(2020,9,28,00,00)
+                        .recruitmentLimit(2120,9,28,00,00)
                         .description("꽃꽂이 클래스")
                         .minTeacher(1)
+                        .maxTeacher(1)
                         .location(StudyLocation.of("강남역"))
+                        .master(new Member(3))
                         .day(StudyDay.of(DayOfWeek.MONDAY, 19, 00, 21, 00), StudyDay.of(DayOfWeek.TUESDAY, 19, 00, 20, 00))
                         .build());
 

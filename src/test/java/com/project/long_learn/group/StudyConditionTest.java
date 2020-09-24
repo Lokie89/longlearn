@@ -4,6 +4,7 @@ import com.project.long_learn.condition.StudyCondition;
 import com.project.long_learn.condition.StudyDay;
 import com.project.long_learn.condition.StudyLocation;
 import com.project.long_learn.alignable.StudyList;
+import com.project.long_learn.domain.Member;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,7 +21,7 @@ class StudyConditionTest {
 
     List<Study> studyList;
 
-    StudyCondition.Builder defaultBuilder = new StudyCondition.Builder().start(1970,01,01).end(1970,01,02).day(StudyDay.of(DayOfWeek.FRIDAY)).location(StudyLocation.of("강남")).recruitmentLimit(1969,01,01,00,00);
+    StudyCondition.Builder defaultBuilder = new StudyCondition.Builder().start(2120,10,24).end(2120,11,24).day(StudyDay.of(DayOfWeek.FRIDAY)).location(StudyLocation.of("강남")).recruitmentLimit(2120,9,24,00,00).master(new Member(1));
 
     StudyCondition defaultStudyCondition = defaultBuilder.build();
 
@@ -28,7 +29,7 @@ class StudyConditionTest {
     void setUp() {
         studyList = new ArrayList<>();
         studyList.add(new Study(1, defaultBuilder.description("안녕").build()));
-        studyList.add(new Study(2, defaultBuilder.description(null).minStudent(3).build()));
+        studyList.add(new Study(2, defaultBuilder.description(null).minStudent(3).maxStudent(50).build()));
         studyList.add(new Study(3, defaultStudyCondition));
         studyList.add(new Study(4, defaultStudyCondition));
         studyList.add(new Study(5, defaultStudyCondition));
