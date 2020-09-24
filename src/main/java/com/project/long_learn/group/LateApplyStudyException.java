@@ -1,5 +1,5 @@
 package com.project.long_learn.group;
 
-public class CannotApplyStudyException extends RuntimeException{
+public class LateApplyStudyException extends RuntimeException{
 
 }
