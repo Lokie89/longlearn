@@ -1,13 +1,17 @@
 package com.project.long_learn.domain;
 
 
+import com.project.long_learn.condition.Condition;
+
 /**
  * 데이터 베이스와 매핑 시킬 객체
  */
-public class Member {
+public class Member implements Condition {
 
     // 임시
     private int id;
+    private int reported;
+    private String name;
 
     public Member(int id) {
         this.id = id;
