@@ -4,13 +4,14 @@ import com.project.long_learn.apply.Volunteer;
 import com.project.long_learn.apply.VolunteerRole;
 import com.project.long_learn.condition.Condition;
 import com.project.long_learn.condition.VolunteerCondition;
+import com.project.long_learn.confirm.Confirm;
 
 import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class VolunteerSet implements Alignable {
+public class VolunteerSet implements Alignable, Confirm<Volunteer> {
     private Set<Volunteer> volunteers = new LinkedHashSet<>();
 
     public void add(Volunteer volunteer) {
@@ -31,11 +32,13 @@ public class VolunteerSet implements Alignable {
                 .count() >= minTeacher;
     }
 
-    public void pass(Volunteer volunteer){
+    @Override
+    public void pass(Volunteer volunteer) {
         volunteer.pass();
     }
 
-    public void fail(Volunteer volunteer){
+    @Override
+    public void fail(Volunteer volunteer) {
         volunteer.fail();
     }
 

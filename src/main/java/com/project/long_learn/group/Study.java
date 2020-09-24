@@ -8,10 +8,11 @@ import com.project.long_learn.condition.StudyCondition;
 import com.project.long_learn.condition.VolunteerCondition;
 import com.project.long_learn.condition.exception.StudyStudentArrangeException;
 import com.project.long_learn.condition.exception.StudyTeacherArrangeException;
+import com.project.long_learn.confirm.Confirm;
 
 import java.util.Comparator;
 
-public class Study implements Group<Volunteer> {
+public class Study implements Group<Volunteer>, Confirm<Volunteer> {
 
     private final VolunteerSet volunteerSet = new VolunteerSet();
     private int studyId;
@@ -91,4 +92,13 @@ public class Study implements Group<Volunteer> {
         return studyId;
     }
 
+    @Override
+    public void pass(Volunteer volunteer) {
+        volunteerSet.pass(volunteer);
+    }
+
+    @Override
+    public void fail(Volunteer volunteer) {
+        volunteerSet.fail(volunteer);
+    }
 }
