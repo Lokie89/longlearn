@@ -51,12 +51,14 @@ public class Volunteer implements Apply {
         return this.volunteerCondition.compareCondition(volunteer.volunteerCondition, comparator);
     }
 
-    public void pass(){
+    public void pass(int confirmId){
         volunteerCondition.pass();
+        member.pass(confirmId);
     }
 
-    public void fail(){
+    public void fail(int confirmId){
         volunteerCondition.fail();
+        member.fail(confirmId);
     }
 
 }

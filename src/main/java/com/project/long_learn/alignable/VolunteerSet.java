@@ -31,22 +31,6 @@ public class VolunteerSet implements Alignable {
         volunteers.remove(volunteer);
     }
 
-    public boolean enoughTeacher(int minTeacher) {
-        return volunteers.stream()
-                .filter(volunteer -> volunteer.isSatisfiedCondition(VolunteerCondition.of(VolunteerRole.TEACHER)))
-                .count() >= minTeacher;
-    }
-
-    @Override
-    public void pass(Volunteer volunteer) {
-        volunteer.pass();
-    }
-
-    @Override
-    public void fail(Volunteer volunteer) {
-        volunteer.fail();
-    }
-
     @Override
     public int size() {
         return volunteers.size();

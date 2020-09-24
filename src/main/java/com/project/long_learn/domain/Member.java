@@ -21,6 +21,14 @@ public class Member {
         // database save
     }
 
+    public void pass(int involveId) {
+        // database save
+    }
+
+    public void fail(int involveId) {
+        // database save
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Member)) {
