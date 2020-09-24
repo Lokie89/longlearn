@@ -43,4 +43,17 @@ class VolunteerSetTest {
         volunteerSet.remove(new Volunteer(new Member(3), VolunteerCondition.of(VolunteerRole.TEACHER)));
         assertEquals(2, volunteerSet.size());
     }
+
+    @Test
+    void compareTest(){
+        volunteerSet.add(new Volunteer(new Member(12), VolunteerCondition.of(VolunteerRole.TEACHER)));
+        volunteerSet.add(new Volunteer(new Member(13), VolunteerCondition.of(VolunteerRole.STUDENT)));
+        volunteerSet.add(new Volunteer(new Member(8), VolunteerCondition.of(VolunteerRole.TEACHER)));
+        volunteerSet.add(new Volunteer(new Member(9), VolunteerCondition.of(VolunteerRole.STUDENT)));
+        volunteerSet.add(new Volunteer(new Member(10), VolunteerCondition.of(VolunteerRole.TEACHER)));
+        volunteerSet.add(new Volunteer(new Member(11), VolunteerCondition.of(VolunteerRole.STUDENT)));
+        volunteerSet.add(new Volunteer(new Member(6), VolunteerCondition.of(VolunteerRole.STUDENT)));
+
+        volunteerSet.copy().filter(VolunteerCondition.of(VolunteerRole.TEACHER)).sort(Volunteer.VolunteerComparator.ID);
+    }
 }

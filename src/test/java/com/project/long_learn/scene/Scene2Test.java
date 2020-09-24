@@ -94,21 +94,19 @@ public class Scene2Test {
     @Test
     void scene2_1() {
         Assertions.assertThrows(StudyStudentArrangeException.class, () -> study.expireApplication());
+        study.fail(student2);
+        study.fail(student3);
+        Assertions.assertThrows(StudyTeacherArrangeException.class, () -> study.expireApplication());
+        study.fail(teacher1);
+        study.expireApplication();
     }
 
     @Test
     void scene2_2() {
-        study.fail(student2);
-        study.fail(student3);
-        Assertions.assertThrows(StudyTeacherArrangeException.class, () -> study.expireApplication());
     }
 
     @Test
     void scene2_3() {
-        study.fail(student2);
-        study.fail(student3);
-        study.fail(teacher1);
-        study.expireApplication();
     }
 
     @Test
