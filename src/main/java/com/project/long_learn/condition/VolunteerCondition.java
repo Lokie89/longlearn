@@ -20,11 +20,11 @@ public class VolunteerCondition implements Condition {
         return new VolunteerCondition(volunteerRole, false);
     }
 
-    public void pass(){
+    public void pass() {
         passed = true;
     }
 
-    public void fail(){
+    public void fail() {
         passed = false;
     }
 

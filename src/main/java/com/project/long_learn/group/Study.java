@@ -43,7 +43,6 @@ public class Study implements Group<Volunteer>, Confirm<Volunteer> {
         if (!studyCondition.isSatisfiedStudentArrange(passedStudent)) {
             throw new StudyStudentArrangeException();
         }
-        System.out.println("aaa");
     }
 
     private void validatePassedTeacher() {
