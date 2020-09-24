@@ -1,6 +1,7 @@
 package com.project.long_learn.apply;
 
 import com.project.long_learn.condition.Condition;
+import com.project.long_learn.condition.VolunteerCondition;
 import com.project.long_learn.domain.Member;
 
 import java.util.Comparator;
@@ -11,9 +12,9 @@ import java.util.Comparator;
  */
 public class Volunteer implements Apply {
     private Member member;
-    private Condition volunteerCondition;
+    private VolunteerCondition volunteerCondition;
 
-    public Volunteer(Member member, Condition volunteerCondition) {
+    public Volunteer(Member member, VolunteerCondition volunteerCondition) {
         this.volunteerCondition = volunteerCondition;
         this.member = member;
     }
@@ -48,6 +49,14 @@ public class Volunteer implements Apply {
 
     public int compareCondition(Volunteer volunteer, Comparator comparator) {
         return this.volunteerCondition.compareCondition(volunteer.volunteerCondition, comparator);
+    }
+
+    public void pass(){
+        volunteerCondition.pass();
+    }
+
+    public void fail(){
+        volunteerCondition.fail();
     }
 
 }

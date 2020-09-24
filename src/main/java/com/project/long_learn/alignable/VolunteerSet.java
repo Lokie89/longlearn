@@ -31,6 +31,14 @@ public class VolunteerSet implements Alignable {
                 .count() >= minTeacher;
     }
 
+    public void pass(Volunteer volunteer){
+        volunteer.pass();
+    }
+
+    public void fail(Volunteer volunteer){
+        volunteer.fail();
+    }
+
     @Override
     public int size() {
         return volunteers.size();

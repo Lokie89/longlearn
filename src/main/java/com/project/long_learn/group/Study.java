@@ -23,29 +23,29 @@ public class Study implements Group<Volunteer> {
         this.studyCondition = studyCondition;
     }
 
-    public void confirm() {
+    public void expireApplication() {
         validateStudy();
     }
 
     private void validateStudy() {
-        validateParticipated();
+        validatePassedVolunteer();
     }
 
-    private void validateParticipated() {
-        validateParticipatedStudent();
-        validateParticipatedTeacher();
+    private void validatePassedVolunteer() {
+        validatePassedStudent();
+        validatePassedTeacher();
     }
 
-    private void validateParticipatedStudent() {
-        final int participatedStudent = volunteerSet.filter(VolunteerCondition.of(VolunteerRole.STUDENT, true)).size();
-        if (studyCondition.isSatisfiedStudentArrange(participatedStudent)) {
+    private void validatePassedStudent() {
+        final int passedStudent = volunteerSet.filter(VolunteerCondition.of(VolunteerRole.STUDENT, true)).size();
+        if (!studyCondition.isSatisfiedStudentArrange(passedStudent)) {
             throw new StudyStudentArrangeException();
         }
     }
 
-    private void validateParticipatedTeacher() {
-        final int participatedTeacher = volunteerSet.filter(VolunteerCondition.of(VolunteerRole.TEACHER, true)).size();
-        if (studyCondition.isSatisfiedTeacherArrange(participatedTeacher)) {
+    private void validatePassedTeacher() {
+        final int passedTeacher = volunteerSet.filter(VolunteerCondition.of(VolunteerRole.TEACHER, true)).size();
+        if (!studyCondition.isSatisfiedTeacherArrange(passedTeacher)) {
             throw new StudyTeacherArrangeException();
         }
     }

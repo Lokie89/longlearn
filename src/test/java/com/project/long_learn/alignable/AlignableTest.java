@@ -71,7 +71,7 @@ class AlignableTest {
 
     @Test
     void sort() {
-        volunteerSet.sort(VolunteerCondition.VolunteerConditionComparator.ROLE.reversed()).sort(VolunteerCondition.VolunteerConditionComparator.PARTICIPATION);
+        volunteerSet.sort(VolunteerCondition.VolunteerConditionComparator.ROLE.reversed()).sort(VolunteerCondition.VolunteerConditionComparator.PASSED);
 
         studyList.sort(StudyCondition.StudyConditionComparator.COSTPERCLASS.reversed());
     }

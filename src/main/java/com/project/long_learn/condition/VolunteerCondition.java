@@ -7,23 +7,27 @@ import java.util.Comparator;
 public class VolunteerCondition implements Condition {
 
     private VolunteerRole volunteerRole;
-    private Boolean participated;
+    private Boolean passed;
 
-    private VolunteerCondition(VolunteerRole volunteerRole, boolean participated) {
+    private VolunteerCondition(VolunteerRole volunteerRole, boolean passed) {
         this.volunteerRole = volunteerRole;
-        this.participated = participated;
+        this.passed = passed;
     }
 
-    public static VolunteerCondition of(VolunteerRole volunteerRole, boolean participated) {
-        return new VolunteerCondition(volunteerRole, participated);
+    public static VolunteerCondition of(VolunteerRole volunteerRole, boolean passed) {
+        return new VolunteerCondition(volunteerRole, passed);
     }
 
     public static VolunteerCondition of(VolunteerRole volunteerRole) {
         return new VolunteerCondition(volunteerRole, false);
     }
 
-    public void participate(){
-        participated = true;
+    public void pass(){
+        passed = true;
+    }
+
+    public void fail(){
+        passed = false;
     }
 
     @Override
@@ -32,7 +36,7 @@ public class VolunteerCondition implements Condition {
             return false;
         }
         VolunteerCondition vc = (VolunteerCondition) condition;
-        return this.volunteerRole.equals(vc.volunteerRole) && this.participated == vc.participated;
+        return this.volunteerRole.equals(vc.volunteerRole) && this.passed == vc.passed;
     }
 
     @Override
@@ -51,10 +55,10 @@ public class VolunteerCondition implements Condition {
                 return o1.volunteerRole.compareTo(o2.volunteerRole);
             }
         },
-        PARTICIPATION {
+        PASSED {
             @Override
             public int compare(VolunteerCondition o1, VolunteerCondition o2) {
-                return o1.participated.compareTo(o2.participated);
+                return o1.passed.compareTo(o2.passed);
             }
         },
         ;
