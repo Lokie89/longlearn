@@ -8,7 +8,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class VolunteerSet implements Alignable {
+public class VolunteerSet implements Alignable<Volunteer> {
     private Set<Volunteer> volunteers;
 
     public VolunteerSet(){
@@ -46,10 +46,10 @@ public class VolunteerSet implements Alignable {
     }
 
     @Override
-    public Alignable sort(Comparator comparator) {
+    public Alignable sort(Comparator<Volunteer> comparator) {
         volunteers = volunteers
                 .stream()
-                .sorted((o1, o2) -> o1.compareCondition(o2, comparator))
+                .sorted(comparator)
                 .collect(Collectors.toCollection(LinkedHashSet::new));
         return this;
     }

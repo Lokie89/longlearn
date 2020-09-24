@@ -6,7 +6,6 @@ import com.project.long_learn.domain.Member;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Comparator;
 import java.util.Objects;
 
 public class StudyCondition implements Condition {
@@ -87,6 +86,34 @@ public class StudyCondition implements Condition {
 
     public boolean isSatisfiedRecruitment() {
         return recruitmentLimit.isAfter(LocalDateTime.now());
+    }
+
+    public int compareStart(StudyCondition studyCondition) {
+        return this.start.compareTo(studyCondition.start);
+    }
+
+    public int compareEnd(StudyCondition studyCondition) {
+        return this.end.compareTo(studyCondition.end);
+    }
+
+    public int compareLocation(StudyCondition studyCondition) {
+        return this.location.compareTo(studyCondition.location);
+    }
+
+    public int compareMinStudent(StudyCondition studyCondition) {
+        return this.minStudent >= studyCondition.minStudent ? 1 : -1;
+    }
+
+    public int compareMaxStudent(StudyCondition studyCondition) {
+        return this.maxStudent >= studyCondition.maxStudent ? 1 : -1;
+    }
+
+    public int compareCostPerClass(StudyCondition studyCondition) {
+        return this.costPerClass >= studyCondition.costPerClass ? 1 : -1;
+    }
+
+    public int compareRecruitmentLimit(StudyCondition studyCondition) {
+        return this.recruitmentLimit.compareTo(studyCondition.recruitmentLimit);
     }
 
     public static class Builder {
@@ -193,15 +220,6 @@ public class StudyCondition implements Condition {
 
     }
 
-    @Override
-    public int compareCondition(Condition condition, Comparator comparator) {
-        if (!(condition instanceof StudyCondition)) {
-            return 0;
-        }
-        StudyCondition info = (StudyCondition) condition;
-        return comparator.compare(this, info);
-    }
-
     private StudyCondition(Builder builder) {
         this.start = builder.start;
         this.end = builder.end;
@@ -217,51 +235,4 @@ public class StudyCondition implements Condition {
         this.master = builder.master;
     }
 
-    public enum StudyConditionComparator implements Comparator<StudyCondition> {
-        START {
-            @Override
-            public int compare(StudyCondition o1, StudyCondition o2) {
-                return o1.start.compareTo(o2.start);
-            }
-        },
-        END {
-            @Override
-            public int compare(StudyCondition o1, StudyCondition o2) {
-                return o1.end.compareTo(o2.end);
-            }
-        },
-        LOCATION {
-            @Override
-            public int compare(StudyCondition o1, StudyCondition o2) {
-                return o1.location.compareTo(o2.location);
-            }
-        },
-        MINSTUDENT {
-            @Override
-            public int compare(StudyCondition o1, StudyCondition o2) {
-                return o1.minStudent >= o2.minStudent ? 1 : -1;
-            }
-        },
-        MAXSTUDENT {
-            @Override
-            public int compare(StudyCondition o1, StudyCondition o2) {
-                return o1.maxStudent >= o2.maxStudent ? 1 : -1;
-            }
-        },
-        COSTPERCLASS {
-            @Override
-            public int compare(StudyCondition o1, StudyCondition o2) {
-                return o1.costPerClass >= o2.costPerClass ? 1 : -1;
-            }
-        },
-        RECRUITMENTLIMIT {
-            @Override
-            public int compare(StudyCondition o1, StudyCondition o2) {
-                return o1.recruitmentLimit.compareTo(o2.recruitmentLimit);
-            }
-        },
-        ;
-
-
-    }
 }

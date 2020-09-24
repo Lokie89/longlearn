@@ -42,4 +42,28 @@ public class Member {
     public int hashCode() {
         return id;
     }
+
+    @Override
+    public boolean isSatisfiedCondition(Condition condition) {
+        if (!(condition instanceof Member)) {
+            return false;
+        }
+        Member mc = (Member) condition;
+        return (mc.id == 0 || mc.id == this.id)
+                && (mc.name == null || this.name.contains(mc.name))
+                && (mc.reported == 0 || mc.reported == this.reported);
+    }
+
+    public int compareId(Member member) {
+        return this.id >= member.id ? 1 : -1;
+    }
+
+    public int compareReported(Member member) {
+        return this.reported >= member.reported ? 1 : -1;
+    }
+
+    public int compareName(Member member) {
+        return this.name.compareTo(member.name);
+    }
+
 }

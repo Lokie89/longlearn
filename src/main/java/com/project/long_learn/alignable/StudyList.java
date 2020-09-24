@@ -7,7 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class StudyList implements Alignable {
+public class StudyList implements Alignable<Study> {
 
     private List<Study> studyList;
 
@@ -24,8 +24,8 @@ public class StudyList implements Alignable {
     }
 
     @Override
-    public Alignable sort(Comparator comparator) {
-        studyList.sort((o1, o2) -> o1.compareCondition(o2, comparator));
+    public Alignable sort(Comparator<Study> comparator) {
+        studyList.sort(comparator);
         return this;
     }
 

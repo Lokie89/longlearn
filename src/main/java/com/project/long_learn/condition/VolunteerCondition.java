@@ -2,8 +2,6 @@ package com.project.long_learn.condition;
 
 import com.project.long_learn.apply.VolunteerRole;
 
-import java.util.Comparator;
-
 public class VolunteerCondition implements Condition {
 
     private VolunteerRole volunteerRole;
@@ -36,31 +34,16 @@ public class VolunteerCondition implements Condition {
             return false;
         }
         VolunteerCondition vc = (VolunteerCondition) condition;
-        return this.volunteerRole.equals(vc.volunteerRole) && this.passed == vc.passed;
+        return (vc.volunteerRole == null || this.volunteerRole.equals(vc.volunteerRole))
+                && this.passed == vc.passed;
     }
 
-    @Override
-    public int compareCondition(Condition condition, Comparator comparator) {
-        if (!(condition instanceof VolunteerCondition)) {
-            return 0;
-        }
-        VolunteerCondition vc = (VolunteerCondition) condition;
-        return comparator.compare(this, vc);
+    public int compareRole(VolunteerCondition volunteerCondition) {
+        return this.volunteerRole.compareTo(volunteerCondition.volunteerRole);
     }
 
-    public enum VolunteerConditionComparator implements Comparator<VolunteerCondition> {
-        ROLE {
-            @Override
-            public int compare(VolunteerCondition o1, VolunteerCondition o2) {
-                return o1.volunteerRole.compareTo(o2.volunteerRole);
-            }
-        },
-        PASSED {
-            @Override
-            public int compare(VolunteerCondition o1, VolunteerCondition o2) {
-                return o1.passed.compareTo(o2.passed);
-            }
-        },
-        ;
+    public int comparePassed(VolunteerCondition volunteerCondition) {
+        return this.passed == volunteerCondition.passed ? 1 : -1;
     }
+
 }

@@ -89,10 +89,6 @@ public class Study implements Group<Volunteer>, Confirm<Volunteer> {
         return this.studyCondition.isSatisfiedCondition(condition);
     }
 
-    public int compareCondition(Study study, Comparator comparator) {
-        return this.studyCondition.compareCondition(study.studyCondition, comparator);
-    }
-
 
     @Override
     public boolean equals(Object obj) {
@@ -129,4 +125,53 @@ public class Study implements Group<Volunteer>, Confirm<Volunteer> {
     public boolean isMaster(Member member) {
         return studyCondition.isMaster(member);
     }
+
+    public enum StudyComparator implements Comparator<Study> {
+        START {
+            @Override
+            public int compare(Study o1, Study o2) {
+                return o1.studyCondition.compareStart(o2.studyCondition);
+            }
+        },
+        END {
+            @Override
+            public int compare(Study o1, Study o2) {
+                return o1.studyCondition.compareEnd(o2.studyCondition);
+            }
+        },
+        LOCATION {
+            @Override
+            public int compare(Study o1, Study o2) {
+                return o1.studyCondition.compareLocation(o2.studyCondition);
+            }
+        },
+        MINSTUDENT {
+            @Override
+            public int compare(Study o1, Study o2) {
+                return o1.studyCondition.compareMinStudent(o2.studyCondition);
+            }
+        },
+        MAXSTUDENT {
+            @Override
+            public int compare(Study o1, Study o2) {
+                return o1.studyCondition.compareMaxStudent(o2.studyCondition);
+            }
+        },
+        COSTPERCLASS {
+            @Override
+            public int compare(Study o1, Study o2) {
+                return o1.studyCondition.compareCostPerClass(o2.studyCondition);
+            }
+        },
+        RECRUITMENTLIMIT {
+            @Override
+            public int compare(Study o1, Study o2) {
+                return o1.studyCondition.compareRecruitmentLimit(o2.studyCondition);
+            }
+        },
+        ;
+
+
+    }
+
 }

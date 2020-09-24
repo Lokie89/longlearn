@@ -44,21 +44,52 @@ public class Volunteer implements Apply {
     }
 
     public boolean isSatisfiedCondition(Condition condition) {
-        return this.volunteerCondition.isSatisfiedCondition(condition);
+        return this.volunteerCondition.isSatisfiedCondition(condition)
+                || this.member.isSatisfiedCondition(condition);
     }
 
-    public int compareCondition(Volunteer volunteer, Comparator comparator) {
-        return this.volunteerCondition.compareCondition(volunteer.volunteerCondition, comparator);
-    }
-
-    public void pass(int confirmId){
+    public void pass(int confirmId) {
         volunteerCondition.pass();
         member.pass(confirmId);
     }
 
-    public void fail(int confirmId){
+    public void fail(int confirmId) {
         volunteerCondition.fail();
         member.fail(confirmId);
+    }
+
+    public enum VolunteerComparator implements Comparator<Volunteer> {
+        ROLE {
+            @Override
+            public int compare(Volunteer o1, Volunteer o2) {
+                return o1.volunteerCondition.compareRole(o2.volunteerCondition);
+            }
+        },
+        PASSED {
+            @Override
+            public int compare(Volunteer o1, Volunteer o2) {
+                return o1.volunteerCondition.comparePassed(o2.volunteerCondition);
+            }
+        },
+        ID {
+            @Override
+            public int compare(Volunteer o1, Volunteer o2) {
+                return o1.member.compareId(o2.member);
+            }
+        },
+        REPORTED {
+            @Override
+            public int compare(Volunteer o1, Volunteer o2) {
+                return o1.member.compareReported(o2.member);
+            }
+        },
+        NAME {
+            @Override
+            public int compare(Volunteer o1, Volunteer o2) {
+                return o1.member.compareName(o2.member);
+            }
+        },
+        ;
     }
 
 }

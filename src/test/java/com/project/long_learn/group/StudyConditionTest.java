@@ -63,7 +63,7 @@ class StudyConditionTest {
     @Test
     void sortTest1() {
         StudyList groupList = new StudyList(studyList);
-        groupList.sort(StudyCondition.StudyConditionComparator.MINSTUDENT);
+        groupList.sort(Study.StudyComparator.MINSTUDENT);
     }
 
     @Test
