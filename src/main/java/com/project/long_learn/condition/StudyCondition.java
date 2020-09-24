@@ -1,6 +1,7 @@
 package com.project.long_learn.condition;
 
 import com.project.long_learn.condition.exception.*;
+import com.project.long_learn.domain.Member;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -25,6 +26,8 @@ public class StudyCondition implements Condition {
 
     private final int costPerClass;
     private final LocalDateTime recruitmentLimit;
+
+    private final Member master;
 
 
     /**
@@ -54,6 +57,13 @@ public class StudyCondition implements Condition {
         if (recruitmentLimit.isAfter(LocalDateTime.of(start, LocalTime.MIDNIGHT))) {
             throw new StudyRecruitmentLimitArrangeException();
         }
+        if (Objects.isNull(master)) {
+            throw new StudyMasterIsNotExistException();
+        }
+    }
+
+    public boolean isMaster(Member master) {
+        return this.master.equals(master);
     }
 
     public boolean isSatisfiedStudentArrange(int participatedStudent) {
@@ -79,6 +89,8 @@ public class StudyCondition implements Condition {
         private int costPerClass;
 
         private LocalDateTime recruitmentLimit;
+
+        private Member master;
 
         public Builder start(int year, int month, int dayOfMonth) {
             this.start = LocalDate.of(year, month, dayOfMonth);
@@ -135,6 +147,11 @@ public class StudyCondition implements Condition {
             return this;
         }
 
+        public Builder master(Member master) {
+            this.master = master;
+            return this;
+        }
+
 
         public StudyCondition build() {
             return new StudyCondition(this);
@@ -156,6 +173,7 @@ public class StudyCondition implements Condition {
                 && (info.minStudent == 0 || minStudent >= info.minStudent)
                 && (info.maxStudent == 0 || maxStudent <= info.maxStudent)
                 && (info.costPerClass == 0 || costPerClass <= info.costPerClass)
+                && (info.master == null || master.equals(info.master))
                 ;
 
     }
@@ -181,6 +199,7 @@ public class StudyCondition implements Condition {
         this.maxTeacher = builder.maxTeacher;
         this.costPerClass = builder.costPerClass;
         this.recruitmentLimit = builder.recruitmentLimit;
+        this.master = builder.master;
     }
 
     public enum StudyConditionComparator implements Comparator<StudyCondition> {
