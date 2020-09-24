@@ -39,14 +39,15 @@ public class Study implements Group<Volunteer>, Confirm<Volunteer> {
     }
 
     private void validatePassedStudent() {
-        final int passedStudent = volunteerSet.filter(VolunteerCondition.of(VolunteerRole.STUDENT, true)).size();
+        final int passedStudent = volunteerSet.copy().filter(VolunteerCondition.of(VolunteerRole.STUDENT, true)).size();
         if (!studyCondition.isSatisfiedStudentArrange(passedStudent)) {
             throw new StudyStudentArrangeException();
         }
+        System.out.println("aaa");
     }
 
     private void validatePassedTeacher() {
-        final int passedTeacher = volunteerSet.filter(VolunteerCondition.of(VolunteerRole.TEACHER, true)).size();
+        final int passedTeacher = volunteerSet.copy().filter(VolunteerCondition.of(VolunteerRole.TEACHER, true)).size();
         if (!studyCondition.isSatisfiedTeacherArrange(passedTeacher)) {
             throw new StudyTeacherArrangeException();
         }

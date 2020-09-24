@@ -1,18 +1,23 @@
 package com.project.long_learn.alignable;
 
 import com.project.long_learn.apply.Volunteer;
-import com.project.long_learn.apply.VolunteerRole;
 import com.project.long_learn.condition.Condition;
-import com.project.long_learn.condition.VolunteerCondition;
-import com.project.long_learn.confirm.Confirm;
 
 import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class VolunteerSet implements Alignable, Confirm<Volunteer> {
-    private Set<Volunteer> volunteers = new LinkedHashSet<>();
+public class VolunteerSet implements Alignable {
+    private Set<Volunteer> volunteers;
+
+    public VolunteerSet(){
+        volunteers = new LinkedHashSet<>();
+    }
+
+    private VolunteerSet(Set<Volunteer> volunteers){
+        this.volunteers = volunteers;
+    }
 
     public void add(Volunteer volunteer) {
         volunteers.add(volunteer);
@@ -63,5 +68,9 @@ public class VolunteerSet implements Alignable, Confirm<Volunteer> {
                 .sorted((o1, o2) -> o1.compareCondition(o2, comparator))
                 .collect(Collectors.toCollection(LinkedHashSet::new));
         return this;
+    }
+
+    public VolunteerSet copy(){
+        return new VolunteerSet(volunteers);
     }
 }
