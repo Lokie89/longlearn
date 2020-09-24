@@ -9,6 +9,7 @@ import com.project.long_learn.condition.VolunteerCondition;
 import com.project.long_learn.condition.exception.StudyStudentArrangeException;
 import com.project.long_learn.condition.exception.StudyTeacherArrangeException;
 import com.project.long_learn.confirm.Confirm;
+import com.project.long_learn.domain.Member;
 
 import java.util.Comparator;
 
@@ -53,8 +54,15 @@ public class Study implements Group<Volunteer>, Confirm<Volunteer> {
 
     @Override
     public void involve(Volunteer volunteer) {
+        validateAddVolunteer(volunteer);
         volunteerSet.add(volunteer);
         volunteer.apply(studyId);
+    }
+
+    private void validateAddVolunteer(Volunteer volunteer) {
+        if (volunteerSet.contains(volunteer)) {
+            throw new AlreadyApplyVolunteerException();
+        }
     }
 
     @Override
@@ -100,5 +108,9 @@ public class Study implements Group<Volunteer>, Confirm<Volunteer> {
     @Override
     public void fail(Volunteer volunteer) {
         volunteerSet.fail(volunteer);
+    }
+
+    public boolean isMaster(Member member) {
+        return studyCondition.isMaster(member);
     }
 }
