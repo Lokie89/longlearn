@@ -11,4 +11,5 @@ public interface Alignable {
     Alignable filter(Condition condition);
     Alignable sort(Comparator comparator);
     int size();
+    Alignable copy();
 }

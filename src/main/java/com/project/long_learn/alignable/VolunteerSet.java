@@ -54,7 +54,7 @@ public class VolunteerSet implements Alignable {
         return this;
     }
 
-    public VolunteerSet copy(){
+    public Alignable copy(){
         return new VolunteerSet(volunteers);
     }
 }

@@ -33,4 +33,9 @@ public class StudyList implements Alignable {
     public int size() {
         return studyList.size();
     }
+
+    @Override
+    public Alignable copy() {
+        return new StudyList(studyList);
+    }
 }
