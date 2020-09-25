@@ -25,7 +25,11 @@ public class Study implements Group<Volunteer>, Confirm<Volunteer> {
         this.studyCondition = studyCondition;
     }
 
-    public void expireApplication() {
+    public void extend(long day){
+        studyCondition.extend(day);
+    }
+
+    public void validateProceed() {
         validateStudy();
     }
 

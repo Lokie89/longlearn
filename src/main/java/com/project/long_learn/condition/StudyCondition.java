@@ -29,6 +29,10 @@ public class StudyCondition implements Condition {
     private final Member master;
 
 
+    public void extend(long day){
+        end.plusDays(day);
+    }
+
     /**
      * return StudyEssentialFieldNotSatisfiedException
      */

@@ -93,16 +93,31 @@ public class Scene2Test {
 
     @Test
     void scene2_1() {
-        Assertions.assertThrows(StudyStudentArrangeException.class, () -> study.expireApplication());
+        Assertions.assertThrows(StudyStudentArrangeException.class, () -> study.validateProceed());
         study.fail(student2);
         study.fail(student3);
-        Assertions.assertThrows(StudyTeacherArrangeException.class, () -> study.expireApplication());
+        Assertions.assertThrows(StudyTeacherArrangeException.class, () -> study.validateProceed());
         study.fail(teacher1);
-        study.expireApplication();
+        study.validateProceed();
     }
 
     @Test
     void scene2_2() {
+        scene2_1();
+        study.except(student4);
+        study.except(student5);
+
+        study.extend(7);
+        Volunteer volunteer12 = new Volunteer(new Member(12),VolunteerCondition.of(VolunteerRole.STUDENT));
+        Volunteer volunteer13 = new Volunteer(new Member(13),VolunteerCondition.of(VolunteerRole.STUDENT));
+        Volunteer volunteer14 = new Volunteer(new Member(14),VolunteerCondition.of(VolunteerRole.STUDENT));
+        study.involve(volunteer12);
+        study.involve(volunteer13);
+        study.involve(volunteer14);
+        study.pass(volunteer12);
+        study.pass(volunteer13);
+
+        study.validateProceed();
     }
 
     @Test
