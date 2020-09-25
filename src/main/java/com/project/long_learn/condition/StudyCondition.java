@@ -101,15 +101,15 @@ public class StudyCondition implements Condition {
     }
 
     public int compareMinStudent(StudyCondition studyCondition) {
-        return this.minStudent >= studyCondition.minStudent ? 1 : -1;
+        return Integer.compare(this.minStudent, studyCondition.minStudent);
     }
 
     public int compareMaxStudent(StudyCondition studyCondition) {
-        return this.maxStudent >= studyCondition.maxStudent ? 1 : -1;
+        return Integer.compare(this.maxStudent, studyCondition.maxStudent);
     }
 
     public int compareCostPerClass(StudyCondition studyCondition) {
-        return this.costPerClass >= studyCondition.costPerClass ? 1 : -1;
+        return Integer.compare(this.costPerClass, studyCondition.costPerClass);
     }
 
     public int compareRecruitmentLimit(StudyCondition studyCondition) {

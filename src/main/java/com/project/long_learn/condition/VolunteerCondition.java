@@ -43,7 +43,7 @@ public class VolunteerCondition implements Condition {
     }
 
     public int comparePassed(VolunteerCondition volunteerCondition) {
-        return this.passed == volunteerCondition.passed ? 1 : -1;
+        return Boolean.compare(this.passed, volunteerCondition.passed);
     }
 
 }

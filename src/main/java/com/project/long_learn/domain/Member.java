@@ -3,6 +3,8 @@ package com.project.long_learn.domain;
 
 import com.project.long_learn.condition.Condition;
 
+import java.util.Objects;
+
 /**
  * 데이터 베이스와 매핑 시킬 객체
  */
@@ -54,16 +56,16 @@ public class Member implements Condition {
         }
         Member mc = (Member) condition;
         return (mc.id == 0 || mc.id == this.id)
-                && (mc.name == null || this.name.contains(mc.name))
+                && (Objects.isNull(mc.name) || this.name.contains(mc.name))
                 && (mc.reported == 0 || mc.reported == this.reported);
     }
 
     public int compareId(Member member) {
-        return this.id >= member.id ? 1 : -1;
+        return Integer.compare(this.id, member.id);
     }
 
     public int compareReported(Member member) {
-        return this.reported >= member.reported ? 1 : -1;
+        return Integer.compare(this.reported, member.reported);
     }
 
     public int compareName(Member member) {
