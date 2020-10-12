@@ -15,7 +15,7 @@ public class StudyCondition implements Condition {
     private final LocalDate start;
     private final LocalDate end;
     private final StudyDays studyDays;
-    private final StudyLocation location;
+    private final Location location;
     private final String description;
     private final int minStudent;
     private final int maxStudent;
@@ -125,7 +125,7 @@ public class StudyCondition implements Condition {
         private LocalDate start;
         private LocalDate end;
         private StudyDays studyDays;
-        private StudyLocation location;
+        private Location location;
 
         private String description;
         private int minStudent;
@@ -153,7 +153,7 @@ public class StudyCondition implements Condition {
             return this;
         }
 
-        public Builder location(StudyLocation location) {
+        public Builder location(Location location) {
             this.location = location;
             return this;
         }
