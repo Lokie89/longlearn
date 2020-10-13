@@ -28,11 +28,6 @@ public class StudyCondition implements Condition {
 
     private final Member master;
 
-
-    public void extend(long day) {
-        end.plusDays(day);
-    }
-
     /**
      * return StudyEssentialFieldNotSatisfiedException
      */
@@ -62,7 +57,7 @@ public class StudyCondition implements Condition {
         if (!isUnlimitedStudent() && minStudent > maxStudent) {
             throw new StudyStudentArrangeException();
         }
-        if ((!isUnlimitedTeacher() && maxTeacher == 0) || minTeacher > maxTeacher) {
+        if (!isUnlimitedTeacher() && minTeacher > maxTeacher) {
             throw new StudyStudentArrangeException();
         }
         if (costPerClass < 0) {
@@ -71,11 +66,15 @@ public class StudyCondition implements Condition {
     }
 
     private boolean isUnlimitedStudent() {
-        return minStudent == 0 && maxStudent == 0;
+        return maxStudent == 0;
     }
 
     private boolean isUnlimitedTeacher() {
-        return minTeacher == 0 && maxTeacher == 0;
+        return maxTeacher == 0;
+    }
+
+    public void extend(long day) {
+        end.plusDays(day);
     }
 
     public boolean isMaster(Member master) {
