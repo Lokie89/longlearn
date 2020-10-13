@@ -15,7 +15,7 @@ public class StudyCondition implements Condition {
     private final LocalDate start;
     private final LocalDate end;
     private final StudyDays studyDays;
-    private final Location location;
+    private final Locations locations;
     private final String description;
     private final int minStudent;
     private final int maxStudent;
@@ -48,7 +48,7 @@ public class StudyCondition implements Condition {
         if (Objects.isNull(studyDays) || studyDays.isStudyDaysNull()) {
             throw new StudyDaysIsNullException();
         }
-        if (Objects.isNull(location) || location.isStudyLocationNull()) {
+        if (Objects.isNull(locations) || locations.isLocationsEmpty()) {
             throw new StudyLocationIsNullException();
         }
         if ((!isUnlimitedStudent() && maxStudent == 0) || minStudent > maxStudent) {
@@ -100,10 +100,6 @@ public class StudyCondition implements Condition {
         return this.end.compareTo(studyCondition.end);
     }
 
-    public int compareLocation(StudyCondition studyCondition) {
-        return this.location.compareTo(studyCondition.location);
-    }
-
     public int compareMinStudent(StudyCondition studyCondition) {
         return Integer.compare(this.minStudent, studyCondition.minStudent);
     }
@@ -125,7 +121,7 @@ public class StudyCondition implements Condition {
         private LocalDate start;
         private LocalDate end;
         private StudyDays studyDays;
-        private Location location;
+        private Locations locations;
 
         private String description;
         private int minStudent;
@@ -153,8 +149,8 @@ public class StudyCondition implements Condition {
             return this;
         }
 
-        public Builder location(Location location) {
-            this.location = location;
+        public Builder locations(Location... locations) {
+            this.locations = new Locations(locations);
             return this;
         }
 
@@ -214,7 +210,7 @@ public class StudyCondition implements Condition {
         return (info.start == null || start.isAfter(info.start))
                 && (info.end == null || end.isBefore(info.end))
                 && (info.studyDays == null || studyDays.available(info.studyDays))
-                && (info.location == null || location.contains(info.location))
+                && (info.locations == null || locations.contains(info.locations))
                 && (info.description == null || (description != null && description.contains(info.description)))
                 && (info.minStudent == 0 || minStudent >= info.minStudent)
                 && (info.maxStudent == 0 || maxStudent <= info.maxStudent)
@@ -228,7 +224,7 @@ public class StudyCondition implements Condition {
         this.start = builder.start;
         this.end = builder.end;
         this.studyDays = builder.studyDays;
-        this.location = builder.location;
+        this.locations = builder.locations;
         this.description = builder.description;
         this.minStudent = builder.minStudent;
         this.maxStudent = builder.maxStudent;

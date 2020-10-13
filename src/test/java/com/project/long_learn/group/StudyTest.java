@@ -16,7 +16,7 @@ import java.time.DayOfWeek;
 
 class StudyTest {
 
-    StudyCondition.Builder defaultBuilder = new StudyCondition.Builder().start(2120, 10, 21).end(2120, 11, 21).day(StudyDay.of(DayOfWeek.FRIDAY)).location(Location.of("강남")).recruitmentLimit(2120, 9, 21, 00, 00).master(new Member(1));
+    StudyCondition.Builder defaultBuilder = new StudyCondition.Builder().start(2120, 10, 21).end(2120, 11, 21).day(StudyDay.of(DayOfWeek.FRIDAY)).locations(Location.of("강남")).recruitmentLimit(2120, 9, 21, 00, 00).master(new Member(1));
     Study study = new Study(5, defaultBuilder.maxStudent(3).build());
 
     @BeforeEach

@@ -27,7 +27,7 @@ public class Scene1Test {
                 .start(2120,10,21)
                 .end(2120,11,21)
                 .description("Dump Study")
-                .location(Location.of("강남"))
+                .locations(Location.of("강남"))
                 .costPerClass(15000)
                 .minStudent(4)
                 .maxStudent(10)
@@ -50,7 +50,7 @@ public class Scene1Test {
                         .description("꽃꽂이 클래스")
                         .minTeacher(1)
                         .maxTeacher(1)
-                        .location(Location.of("강남역"))
+                        .locations(Location.of("강남역"))
                         .master(new Member(3))
                         .day(StudyDay.of(DayOfWeek.MONDAY, 19, 00, 21, 00), StudyDay.of(DayOfWeek.TUESDAY, 19, 00, 20, 00))
                         .build());
@@ -69,7 +69,7 @@ public class Scene1Test {
         StudyCondition filterCondition
                 = new StudyCondition.Builder()
                 .description("꽃꽂이")
-                .location(Location.of("강남"))
+                .locations(Location.of("강남"))
                 .minTeacher(1)
                 .day(StudyDay.of(DayOfWeek.MONDAY, 19, 00, 21, 00), StudyDay.of(DayOfWeek.TUESDAY, 19, 00, 20, 00))
                 .build();
@@ -101,7 +101,7 @@ public class Scene1Test {
     void scene1_4(){
         StudyCondition filterCondition
                 = new StudyCondition.Builder()
-                .location(Location.of("강남역"))
+                .locations(Location.of("강남역"))
                 .build();
         Assertions.assertTrue(studyList.size() == 101);
         Assertions.assertTrue(studyList.filter(filterCondition).size() == 1);

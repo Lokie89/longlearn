@@ -43,7 +43,7 @@ public class Scene2Test {
                 .maxTeacher(1)
                 .minStudent(6)
                 .maxStudent(8)
-                .location(Location.of("홍대역 땡땡스터디룸"))
+                .locations(Location.of("홍대역 땡땡스터디룸"))
                 .day(StudyDay.of(DayOfWeek.MONDAY, 19, 00, 21, 00), StudyDay.of(DayOfWeek.TUESDAY, 19, 00, 21, 00))
                 .description("책은 땡땡쿠버네티스로 하겠습니다.\n 첫 수업은 맛보기 입니다.")
                 .master(new Member(1))

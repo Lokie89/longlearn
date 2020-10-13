@@ -142,12 +142,6 @@ public class Study implements Group<Volunteer>, Confirm<Volunteer> {
                 return o1.studyCondition.compareEnd(o2.studyCondition);
             }
         },
-        LOCATION {
-            @Override
-            public int compare(Study o1, Study o2) {
-                return o1.studyCondition.compareLocation(o2.studyCondition);
-            }
-        },
         MINSTUDENT {
             @Override
             public int compare(Study o1, Study o2) {

@@ -24,7 +24,7 @@ public class Scene3Test {
             .maxTeacher(1)
             .minStudent(5)
             .maxStudent(5)
-            .location(Location.of("강남"))
+            .locations(Location.of("강남"))
             .description("주식 프로그래밍 스터디 입니다.")
             .costPerClass(5000)
             .start(2020,10,13)
@@ -40,7 +40,7 @@ public class Scene3Test {
             .maxTeacher(3)
             .minStudent(10)
             .maxStudent(15)
-            .location(Location.of("성남"))
+            .locations(Location.of("성남"))
             .description("스쿠버 다이빙 스터디입니다.")
             .costPerClass(50000)
             .day(StudyDay.of(DayOfWeek.SATURDAY))
@@ -54,7 +54,7 @@ public class Scene3Test {
             .maxTeacher(3)
             .minStudent(6)
             .maxStudent(9)
-            .location(Location.of("용인"))
+            .locations(Location.of("용인"))
             .description("스키 스터디입니다.")
             .costPerClass(45000)
             .day(StudyDay.of(DayOfWeek.FRIDAY))
@@ -77,11 +77,11 @@ public class Scene3Test {
     void scene3_1() {
         studyList.filter(new StudyCondition.Builder().day(StudyDay.of(DayOfWeek.SATURDAY), StudyDay.of(DayOfWeek.SUNDAY)).build());
         Assertions.assertEquals(studyList.size(),2);
-        studyList.filter(new StudyCondition.Builder().location(Location.of("강남")).build());
+        studyList.filter(new StudyCondition.Builder().locations(Location.of("강남")).build());
         Assertions.assertEquals(studyList.size(),1);
         Member member = new Member(957114);
-        member.text(stockStudy,"주식 프로그래밍은 어떻게 하는 건가요?");
-        member.text(stockStudyMaster,"주식 프로그래밍은 어떻게 하는 건가요?");
+//        member.text(stockStudy,"주식 프로그래밍은 어떻게 하는 건가요?");
+//        member.text(stockStudyMaster,"주식 프로그래밍은 어떻게 하는 건가요?");
 
     }
 }

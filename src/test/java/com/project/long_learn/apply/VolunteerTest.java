@@ -17,8 +17,8 @@ import java.time.DayOfWeek;
 class VolunteerTest {
 
     Volunteer volunteer = new Volunteer(new Member(3), VolunteerCondition.of(VolunteerRole.TEACHER));
-    StudyCondition.Builder defaultBuilder = new StudyCondition.Builder().start(2120, 10, 1).end(2120,11,1).day(StudyDay.of(DayOfWeek.FRIDAY)).location(Location.of("강남"));
-    Study study = new Study(6, defaultBuilder.location(Location.of("강남")).minTeacher(3).maxTeacher(6).recruitmentLimit(2120,9,24,00,00).master(new Member(1)).build());
+    StudyCondition.Builder defaultBuilder = new StudyCondition.Builder().start(2120, 10, 1).end(2120,11,1).day(StudyDay.of(DayOfWeek.FRIDAY)).locations(Location.of("강남"));
+    Study study = new Study(6, defaultBuilder.locations(Location.of("강남")).minTeacher(3).maxTeacher(6).recruitmentLimit(2120,9,24,00,00).master(new Member(1)).build());
 
     @BeforeEach
     void setUp() {

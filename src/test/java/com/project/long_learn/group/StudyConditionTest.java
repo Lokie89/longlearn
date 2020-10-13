@@ -21,7 +21,7 @@ class StudyConditionTest {
 
     List<Study> studyList;
 
-    StudyCondition.Builder defaultBuilder = new StudyCondition.Builder().start(2120,10,24).end(2120,11,24).day(StudyDay.of(DayOfWeek.FRIDAY)).location(Location.of("강남")).recruitmentLimit(2120,9,24,00,00).master(new Member(1));
+    StudyCondition.Builder defaultBuilder = new StudyCondition.Builder().start(2120, 10, 24).end(2120, 11, 24).day(StudyDay.of(DayOfWeek.FRIDAY)).locations(Location.of("강남")).recruitmentLimit(2120, 9, 24, 00, 00).master(new Member(1));
 
     StudyCondition defaultStudyCondition = defaultBuilder.build();
 
@@ -70,14 +70,14 @@ class StudyConditionTest {
     void essentialStudyException() {
 
         final StudyCondition.Builder builder = new StudyCondition.Builder();
-        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(1970,01,01).end(1970,01,02).day().location(null).build()));
-        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(1970,01,01).end(1970,01,02).day().location(null).start(2020,9,22).build()));
-        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(1970,01,01).end(1970,01,02).day().location(null).end(2020,9,22).build()));
-        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(1970,01,01).end(1970,01,02).day().location(null).day(StudyDay.of(DayOfWeek.FRIDAY)).build()));
-        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(1970,01,01).end(1970,01,02).day().location(null).location(Location.of(1,1)).build()));
-        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(1970,01,01).end(1970,01,02).day().location(null).start(2020,9,22).end(2020,9,22).build()));
-        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(1970,01,01).end(1970,01,02).day().location(null).start(2020,9,21).end(2020,9,22).build()));
-        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(1970,01,01).end(1970,01,02).day().location(null).start(2020,9,21).end(2020,9,22).build()));
+        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(1970, 01, 01).end(1970, 01, 02).day().locations(Location.of("강남")).build()));
+        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(1970, 01, 01).end(1970, 01, 02).day().locations(Location.of("강남")).start(2020, 9, 22).build()));
+        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(1970, 01, 01).end(1970, 01, 02).day().locations(Location.of("강남")).end(2020, 9, 22).build()));
+        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(1970, 01, 01).end(1970, 01, 02).day().locations(Location.of("강남")).recruitmentLimit(2020, 10, 13, 0, 0).day(StudyDay.of(DayOfWeek.FRIDAY)).build()));
+        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(1970, 01, 01).end(1970, 01, 02).day().locations(Location.of("강남")).build()));
+        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(1970, 01, 01).end(1970, 01, 02).day().locations(Location.of("강남")).start(2020, 9, 22).end(2020, 9, 22).build()));
+        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(1970, 01, 01).end(1970, 01, 02).day().locations(Location.of("강남")).start(2020, 9, 21).end(2020, 9, 22).build()));
+        Assertions.assertThrows(StudyEssentialFieldNotSatisfiedException.class, () -> new Study(3, builder.start(1970, 01, 01).end(1970, 01, 02).day().locations(Location.of("강남")).start(2020, 9, 21).end(2020, 9, 22).build()));
     }
 
 }

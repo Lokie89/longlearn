@@ -1,6 +1,6 @@
 package com.project.long_learn.condition;
 
-public class Location implements Comparable<Location> {
+public class Location {
     private double latitude;
     private double longitude;
     private String name;
@@ -23,16 +23,17 @@ public class Location implements Comparable<Location> {
         return new Location(name);
     }
 
-    @Override
-    public int compareTo(Location location) {
-        return name.compareTo(location.name);
-    }
-
-    public boolean isStudyLocationNull() {
+    public boolean isLocationEmpty() {
         return (latitude == 0 || longitude == 0) && name == null;
     }
 
-    public boolean contains(Location location) {
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Location)) {
+            return false;
+        }
+        Location location = (Location) obj;
         return this.name.contains(location.name);
     }
+
 }
