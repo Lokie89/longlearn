@@ -36,14 +36,10 @@ public class StudyCondition implements Condition {
     /**
      * return StudyEssentialFieldNotSatisfiedException
      */
-    public void validateEssentialField() {
+    private void validateEssentialField() {
         if (Objects.isNull(start)
-                || Objects.isNull(end)
-                || start.isAfter(end)) {
+                || Objects.isNull(end)) {
             throw new StudyDateIsNullException();
-        }
-        if (start.isAfter(end)) {
-            throw new StudyDateArrangeException();
         }
         if (Objects.isNull(studyDays) || studyDays.isStudyDaysNull()) {
             throw new StudyDaysIsNullException();
@@ -51,7 +47,19 @@ public class StudyCondition implements Condition {
         if (Objects.isNull(locations) || locations.isLocationsEmpty()) {
             throw new StudyLocationIsNullException();
         }
-        if ((!isUnlimitedStudent() && maxStudent == 0) || minStudent > maxStudent) {
+        if (Objects.isNull(recruitmentLimit) || recruitmentLimit.isAfter(LocalDateTime.of(start, LocalTime.MIDNIGHT))) {
+            throw new StudyRecruitmentLimitArrangeException();
+        }
+        if (Objects.isNull(master)) {
+            throw new StudyMasterIsNotExistException();
+        }
+    }
+
+    private void validateField() {
+        if (!Objects.isNull(start) && !Objects.isNull(end) && start.isAfter(end)) {
+            throw new StudyDateArrangeException();
+        }
+        if (!isUnlimitedStudent() && minStudent > maxStudent) {
             throw new StudyStudentArrangeException();
         }
         if ((!isUnlimitedTeacher() && maxTeacher == 0) || minTeacher > maxTeacher) {
@@ -59,12 +67,6 @@ public class StudyCondition implements Condition {
         }
         if (costPerClass < 0) {
             throw new StudyCostArrangeException();
-        }
-        if (Objects.isNull(recruitmentLimit) || recruitmentLimit.isAfter(LocalDateTime.of(start, LocalTime.MIDNIGHT))) {
-            throw new StudyRecruitmentLimitArrangeException();
-        }
-        if (Objects.isNull(master)) {
-            throw new StudyMasterIsNotExistException();
         }
     }
 
@@ -118,21 +120,21 @@ public class StudyCondition implements Condition {
 
     public static class Builder {
 
-        private LocalDate start;
-        private LocalDate end;
-        private StudyDays studyDays;
-        private Locations locations;
+        LocalDate start;
+        LocalDate end;
+        StudyDays studyDays;
+        Locations locations;
 
-        private String description;
-        private int minStudent;
-        private int maxStudent;
-        private int minTeacher;
-        private int maxTeacher;
-        private int costPerClass;
+        String description;
+        int minStudent;
+        int maxStudent;
+        int minTeacher;
+        int maxTeacher;
+        int costPerClass;
 
-        private LocalDateTime recruitmentLimit;
+        LocalDateTime recruitmentLimit;
 
-        private Member master;
+        Member master;
 
         public Builder start(int year, int month, int dayOfMonth) {
             this.start = LocalDate.of(year, month, dayOfMonth);
@@ -201,6 +203,66 @@ public class StudyCondition implements Condition {
 
     }
 
+    public static class EssentialBuilder extends Builder {
+
+        public EssentialBuilder(Member master, LocalDate start, LocalDate end, LocalDateTime recruitmentLimit, StudyDays studyDays, Locations locations) {
+            this.start = start;
+            this.end = end;
+            this.recruitmentLimit = recruitmentLimit;
+            this.studyDays = studyDays;
+            this.locations = locations;
+            this.master = master;
+        }
+
+        public EssentialBuilder(Member master,
+                                int startYear, int startMonth, int startDayOfMonth,
+                                int endYear, int endMonth, int endDayOfMonth,
+                                int recruitYear, int recruitMonth, int recruitDayOfMonth, int recruitHour, int recruitMinute,
+                                StudyDays studyDays, Locations locations) {
+            this.start = LocalDate.of(startYear, startMonth, startDayOfMonth);
+            this.end = LocalDate.of(endYear, endMonth, endDayOfMonth);
+            this.recruitmentLimit = LocalDateTime.of(recruitYear, recruitMonth, recruitDayOfMonth, recruitHour, recruitMinute);
+            this.studyDays = studyDays;
+            this.locations = locations;
+            this.master = master;
+        }
+
+        public EssentialBuilder description(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public EssentialBuilder minStudent(int minStudent) {
+            this.minStudent = minStudent;
+            return this;
+        }
+
+        public EssentialBuilder maxStudent(int maxStudent) {
+            this.maxStudent = maxStudent;
+            return this;
+        }
+
+        public EssentialBuilder minTeacher(int minTeacher) {
+            this.minTeacher = minTeacher;
+            return this;
+        }
+
+        public EssentialBuilder maxTeacher(int maxTeacher) {
+            this.maxTeacher = maxTeacher;
+            return this;
+        }
+
+        public EssentialBuilder costPerClass(int costPerClass) {
+            this.costPerClass = costPerClass;
+            return this;
+        }
+
+        public StudyCondition build() {
+            return new StudyCondition(this);
+        }
+
+    }
+
     @Override
     public boolean isSatisfiedCondition(Condition condition) {
         if (!(condition instanceof StudyCondition)) {
@@ -233,6 +295,24 @@ public class StudyCondition implements Condition {
         this.costPerClass = builder.costPerClass;
         this.recruitmentLimit = builder.recruitmentLimit;
         this.master = builder.master;
+        validateField();
+    }
+
+    private StudyCondition(EssentialBuilder builder) {
+        this.start = builder.start;
+        this.end = builder.end;
+        this.studyDays = builder.studyDays;
+        this.locations = builder.locations;
+        this.description = builder.description;
+        this.minStudent = builder.minStudent;
+        this.maxStudent = builder.maxStudent;
+        this.minTeacher = builder.minTeacher;
+        this.maxTeacher = builder.maxTeacher;
+        this.costPerClass = builder.costPerClass;
+        this.recruitmentLimit = builder.recruitmentLimit;
+        this.master = builder.master;
+        validateEssentialField();
+        validateField();
     }
 
 }

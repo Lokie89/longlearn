@@ -1,18 +1,18 @@
 package com.project.long_learn.scene;
 
-import com.project.long_learn.condition.StudyCondition;
-import com.project.long_learn.condition.StudyDay;
-import com.project.long_learn.condition.Location;
-import com.project.long_learn.domain.Member;
-import com.project.long_learn.group.Study;
 import com.project.long_learn.alignable.Alignable;
 import com.project.long_learn.alignable.StudyList;
+import com.project.long_learn.condition.*;
+import com.project.long_learn.domain.Member;
+import com.project.long_learn.group.Study;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,37 +23,38 @@ public class Scene1Test {
     @BeforeEach
     void setUp() {
         List<Study> groupList = new ArrayList<>();
-        StudyCondition.Builder dumpBuilder = new StudyCondition.Builder()
-                .start(2120,10,21)
-                .end(2120,11,21)
+        StudyCondition.EssentialBuilder dumpBuilder = new StudyCondition.EssentialBuilder(
+                new Member(1),
+                LocalDate.of(2120, 10, 21),
+                LocalDate.of(2120, 11, 21),
+                LocalDateTime.of(2120, 9, 21, 00, 00),
+                new StudyDays(StudyDay.of(DayOfWeek.SUNDAY), StudyDay.of(DayOfWeek.TUESDAY)),
+                new Locations(Location.of("강남"))
+        )
                 .description("Dump Study")
-                .locations(Location.of("강남"))
                 .costPerClass(15000)
                 .minStudent(4)
                 .maxStudent(10)
                 .minTeacher(0)
-                .maxTeacher(5)
-                .master(new Member(1))
-                .recruitmentLimit(2120,9,21,00,00)
-                .day(StudyDay.of(DayOfWeek.SUNDAY), StudyDay.of(DayOfWeek.TUESDAY));
+                .maxTeacher(5);
 
         for (int i = 0; i < 100; i++) {
-            groupList.add(new Study(i, dumpBuilder.build()));
+            groupList.add(new Study(i, dumpBuilder));
         }
 
         Study flowerStudy = new Study(101,
-                new StudyCondition.Builder()
-                        .start(2120,10,28)
-                        .end(2120,11,28)
+                new StudyCondition.EssentialBuilder(
+                        new Member(3),
+                        2120, 10, 28,
+                        2120, 11, 28,
+                        2120, 9, 28, 00, 00,
+                        new StudyDays(StudyDay.of(DayOfWeek.MONDAY, 19, 00, 21, 00), StudyDay.of(DayOfWeek.TUESDAY, 19, 00, 20, 00)),
+                        new Locations(Location.of("강남역"))
+                )
                         .costPerClass(10000)
-                        .recruitmentLimit(2120,9,28,00,00)
                         .description("꽃꽂이 클래스")
                         .minTeacher(1)
-                        .maxTeacher(1)
-                        .locations(Location.of("강남역"))
-                        .master(new Member(3))
-                        .day(StudyDay.of(DayOfWeek.MONDAY, 19, 00, 21, 00), StudyDay.of(DayOfWeek.TUESDAY, 19, 00, 20, 00))
-                        .build());
+                        .maxTeacher(1));
 
         groupList.add(flowerStudy);
         studyList = new StudyList(groupList);
@@ -78,7 +79,7 @@ public class Scene1Test {
     }
 
     @Test
-    void scene1_2(){
+    void scene1_2() {
         StudyCondition filterCondition
                 = new StudyCondition.Builder()
                 .description("꽃꽂이")
@@ -88,7 +89,7 @@ public class Scene1Test {
     }
 
     @Test
-    void scene1_3(){
+    void scene1_3() {
         StudyCondition filterCondition
                 = new StudyCondition.Builder()
                 .day(StudyDay.of(DayOfWeek.MONDAY, 19, 00, 21, 00), StudyDay.of(DayOfWeek.TUESDAY, 19, 00, 20, 00))
@@ -98,7 +99,7 @@ public class Scene1Test {
     }
 
     @Test
-    void scene1_4(){
+    void scene1_4() {
         StudyCondition filterCondition
                 = new StudyCondition.Builder()
                 .locations(Location.of("강남역"))

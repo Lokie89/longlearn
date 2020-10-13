@@ -1,9 +1,6 @@
 package com.project.long_learn.apply;
 
-import com.project.long_learn.condition.StudyCondition;
-import com.project.long_learn.condition.StudyDay;
-import com.project.long_learn.condition.Location;
-import com.project.long_learn.condition.VolunteerCondition;
+import com.project.long_learn.condition.*;
 import com.project.long_learn.domain.Member;
 import com.project.long_learn.group.Study;
 import org.junit.jupiter.api.AfterEach;
@@ -17,8 +14,8 @@ import java.time.DayOfWeek;
 class VolunteerTest {
 
     Volunteer volunteer = new Volunteer(new Member(3), VolunteerCondition.of(VolunteerRole.TEACHER));
-    StudyCondition.Builder defaultBuilder = new StudyCondition.Builder().start(2120, 10, 1).end(2120,11,1).day(StudyDay.of(DayOfWeek.FRIDAY)).locations(Location.of("강남"));
-    Study study = new Study(6, defaultBuilder.locations(Location.of("강남")).minTeacher(3).maxTeacher(6).recruitmentLimit(2120,9,24,00,00).master(new Member(1)).build());
+    StudyCondition.EssentialBuilder defaultBuilder = new StudyCondition.EssentialBuilder(new Member(78), 2120, 10, 1, 2120, 11, 1, 2120, 9, 30, 0, 0, new StudyDays(StudyDay.of(DayOfWeek.FRIDAY)), new Locations(Location.of("강남")));
+    Study study = new Study(6, defaultBuilder.minTeacher(3).maxTeacher(6));
 
     @BeforeEach
     void setUp() {

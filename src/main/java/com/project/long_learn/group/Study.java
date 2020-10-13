@@ -19,10 +19,9 @@ public class Study implements Group<Volunteer>, Confirm<Volunteer> {
     private int studyId;
     private StudyCondition studyCondition;
 
-    public Study(int studyId, StudyCondition studyCondition) {
+    public Study(int studyId, StudyCondition.EssentialBuilder essentialBuilder) {
         this.studyId = studyId;
-        studyCondition.validateEssentialField();
-        this.studyCondition = studyCondition;
+        this.studyCondition = essentialBuilder.build();
     }
 
     public void extend(long day){

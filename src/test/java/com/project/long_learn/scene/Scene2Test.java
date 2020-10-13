@@ -2,10 +2,7 @@ package com.project.long_learn.scene;
 
 import com.project.long_learn.apply.Volunteer;
 import com.project.long_learn.apply.VolunteerRole;
-import com.project.long_learn.condition.StudyCondition;
-import com.project.long_learn.condition.StudyDay;
-import com.project.long_learn.condition.Location;
-import com.project.long_learn.condition.VolunteerCondition;
+import com.project.long_learn.condition.*;
 import com.project.long_learn.condition.exception.StudyStudentArrangeException;
 import com.project.long_learn.condition.exception.StudyTeacherArrangeException;
 import com.project.long_learn.domain.Member;
@@ -34,20 +31,19 @@ public class Scene2Test {
 
     @BeforeEach
     void setUp() {
-        study = new Study(6, new StudyCondition.Builder()
-                .recruitmentLimit(2120, 9, 20, 00, 00)
-                .start(2120, 9, 30)
-                .end(2120, 10, 30)
+        study = new Study(6, new StudyCondition.EssentialBuilder(new Member(1),
+                2120, 9, 30,
+                2120, 10, 30,
+                2120, 9, 20, 00, 00,
+                new StudyDays(StudyDay.of(DayOfWeek.MONDAY, 19, 00, 21, 00), StudyDay.of(DayOfWeek.TUESDAY, 19, 00, 21, 00)),
+                new Locations(Location.of("홍대역 땡땡스터디룸"))
+        )
                 .costPerClass(5000)
                 .minTeacher(1)
                 .maxTeacher(1)
                 .minStudent(6)
                 .maxStudent(8)
-                .locations(Location.of("홍대역 땡땡스터디룸"))
-                .day(StudyDay.of(DayOfWeek.MONDAY, 19, 00, 21, 00), StudyDay.of(DayOfWeek.TUESDAY, 19, 00, 21, 00))
-                .description("책은 땡땡쿠버네티스로 하겠습니다.\n 첫 수업은 맛보기 입니다.")
-                .master(new Member(1))
-                .build());
+                .description("책은 땡땡쿠버네티스로 하겠습니다.\n 첫 수업은 맛보기 입니다."));
 
         student1 = new Volunteer(new Member(1), VolunteerCondition.of(VolunteerRole.STUDENT));
         student2 = new Volunteer(new Member(2), VolunteerCondition.of(VolunteerRole.STUDENT));
@@ -108,9 +104,9 @@ public class Scene2Test {
         study.except(student5);
 
         study.extend(7);
-        Volunteer volunteer12 = new Volunteer(new Member(12),VolunteerCondition.of(VolunteerRole.STUDENT));
-        Volunteer volunteer13 = new Volunteer(new Member(13),VolunteerCondition.of(VolunteerRole.STUDENT));
-        Volunteer volunteer14 = new Volunteer(new Member(14),VolunteerCondition.of(VolunteerRole.STUDENT));
+        Volunteer volunteer12 = new Volunteer(new Member(12), VolunteerCondition.of(VolunteerRole.STUDENT));
+        Volunteer volunteer13 = new Volunteer(new Member(13), VolunteerCondition.of(VolunteerRole.STUDENT));
+        Volunteer volunteer14 = new Volunteer(new Member(14), VolunteerCondition.of(VolunteerRole.STUDENT));
         study.involve(volunteer12);
         study.involve(volunteer13);
         study.involve(volunteer14);
