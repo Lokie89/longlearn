@@ -29,7 +29,7 @@ public class StudyCondition implements Condition {
     private final Member master;
 
 
-    public void extend(long day){
+    public void extend(long day) {
         end.plusDays(day);
     }
 
@@ -60,7 +60,7 @@ public class StudyCondition implements Condition {
         if (costPerClass < 0) {
             throw new StudyCostArrangeException();
         }
-        if (recruitmentLimit.isAfter(LocalDateTime.of(start, LocalTime.MIDNIGHT))) {
+        if (Objects.isNull(recruitmentLimit) || recruitmentLimit.isAfter(LocalDateTime.of(start, LocalTime.MIDNIGHT))) {
             throw new StudyRecruitmentLimitArrangeException();
         }
         if (Objects.isNull(master)) {
