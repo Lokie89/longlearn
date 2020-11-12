@@ -1,13 +1,11 @@
-package com.project.long_learn.Text;
-
-import com.project.long_learn.domain.Member;
+package com.project.long_learn.text;
 
 public class Message implements Text {
-    private Member from;
-    private Member to;
+    private TextSender from;
+    private TextReceiver to;
     private String message;
 
-    public Message(Member from, Member to, String message) {
+    public Message(TextSender from, TextReceiver to, String message) {
         this.from = from;
         this.to = to;
         this.message = message;
@@ -16,5 +14,9 @@ public class Message implements Text {
     @Override
     public void text() {
         // save
+        long textId = 3L;
+        // save 후
+        from.send(textId);
+        to.receive(textId);
     }
 }
