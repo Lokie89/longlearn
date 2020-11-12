@@ -11,11 +11,11 @@ import java.util.stream.Collectors;
 public class VolunteerSet implements Alignable<Volunteer> {
     private Set<Volunteer> volunteers;
 
-    public VolunteerSet(){
+    public VolunteerSet() {
         volunteers = new LinkedHashSet<>();
     }
 
-    private VolunteerSet(Set<Volunteer> volunteers){
+    private VolunteerSet(Set<Volunteer> volunteers) {
         this.volunteers = volunteers;
     }
 
@@ -54,7 +54,12 @@ public class VolunteerSet implements Alignable<Volunteer> {
         return this;
     }
 
-    public Alignable copy(){
+    public Alignable copy() {
         return new VolunteerSet(volunteers);
+    }
+
+    @Override
+    public void receive(long textId) {
+        volunteers.stream().forEach(volunteer -> volunteer.receive(textId));
     }
 }

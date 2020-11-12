@@ -2,13 +2,15 @@ package com.project.long_learn.domain;
 
 
 import com.project.long_learn.condition.Condition;
+import com.project.long_learn.text.TextReceiver;
+import com.project.long_learn.text.TextSender;
 
 import java.util.Objects;
 
 /**
  * 데이터 베이스와 매핑 시킬 객체
  */
-public class Member implements Condition {
+public class Member implements Condition, TextSender, TextReceiver {
 
     // 임시
     private int id;
@@ -72,4 +74,13 @@ public class Member implements Condition {
         return this.name.compareTo(member.name);
     }
 
+    @Override
+    public void receive(long textId) {
+        //update
+    }
+
+    @Override
+    public void send(long textId) {
+        //update
+    }
 }

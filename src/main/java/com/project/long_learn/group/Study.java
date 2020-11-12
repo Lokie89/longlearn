@@ -128,6 +128,11 @@ public class Study implements Group<Volunteer>, Confirm<Volunteer> {
         return studyCondition.isMaster(member);
     }
 
+    @Override
+    public void receive(long textId) {
+        volunteerSet.receive(textId);
+    }
+
     public enum StudyComparator implements Comparator<Study> {
         START {
             @Override

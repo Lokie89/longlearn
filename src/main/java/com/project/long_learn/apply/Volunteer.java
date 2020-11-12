@@ -3,6 +3,7 @@ package com.project.long_learn.apply;
 import com.project.long_learn.condition.Condition;
 import com.project.long_learn.condition.VolunteerCondition;
 import com.project.long_learn.domain.Member;
+import com.project.long_learn.text.TextReceiver;
 
 import java.util.Comparator;
 
@@ -10,7 +11,7 @@ import java.util.Comparator;
  * 지원자
  * 신상정보와 지원한 그룹 ID
  */
-public class Volunteer implements Apply {
+public class Volunteer implements Apply, TextReceiver {
     private Member member;
     private VolunteerCondition volunteerCondition;
 
@@ -56,6 +57,11 @@ public class Volunteer implements Apply {
     public void fail(int confirmId) {
         volunteerCondition.fail();
         member.fail(confirmId);
+    }
+
+    @Override
+    public void receive(long textId) {
+        member.receive(textId);
     }
 
     public enum VolunteerComparator implements Comparator<Volunteer> {

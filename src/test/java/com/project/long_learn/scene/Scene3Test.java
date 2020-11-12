@@ -5,6 +5,8 @@ import com.project.long_learn.alignable.StudyList;
 import com.project.long_learn.condition.*;
 import com.project.long_learn.domain.Member;
 import com.project.long_learn.group.Study;
+import com.project.long_learn.text.Message;
+import com.project.long_learn.text.Text;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -77,11 +79,12 @@ public class Scene3Test {
     void scene3_1() {
         studyList.filter(new StudyCondition.Builder().day(StudyDay.of(DayOfWeek.SATURDAY), StudyDay.of(DayOfWeek.SUNDAY)).build());
         Assertions.assertEquals(studyList.size(), 2);
-        studyList.filter(new StudyCondition.Builder().locations(Location.of("강남")).build());
+        studyList.filter(new StudyCondition.Builder().locations(Location.of("강남"), Location.of("성남")).build());
+        Assertions.assertEquals(studyList.size(), 2);
+        studyList.filter(new StudyCondition.Builder().description("주식").build());
         Assertions.assertEquals(studyList.size(), 1);
         Member member = new Member(957114);
-//        member.text(stockStudy,"주식 프로그래밍은 어떻게 하는 건가요?");
-//        member.text(stockStudyMaster,"주식 프로그래밍은 어떻게 하는 건가요?");
-
+        Text message = new Message(member, stockStudyMaster, "주식 관련 프로그래밍이라고 하셨는데 프로그래밍은 어떤 걸 말씀하시는 건가요?");
+        message.text();
     }
 }

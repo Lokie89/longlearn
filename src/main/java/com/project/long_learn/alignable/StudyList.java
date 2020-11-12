@@ -38,4 +38,9 @@ public class StudyList implements Alignable<Study> {
     public Alignable copy() {
         return new StudyList(studyList);
     }
+
+    @Override
+    public void receive(long textId) {
+        studyList.stream().forEach(study -> study.receive(textId));
+    }
 }
