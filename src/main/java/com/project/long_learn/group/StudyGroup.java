@@ -5,7 +5,7 @@ import com.project.long_learn.volunteer.Volunteer;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class Study implements Group {
+public class StudyGroup implements Group {
 
     private final Set<Volunteer> volunteers = new LinkedHashSet<>();
 
