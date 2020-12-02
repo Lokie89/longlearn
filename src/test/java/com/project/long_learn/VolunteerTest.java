@@ -1,24 +1,24 @@
 package com.project.long_learn;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import com.project.long_learn.group.Group;
 import com.project.long_learn.group.StudyGroup;
-import com.project.long_learn.volunteer.Member;
+import com.project.long_learn.volunteer.StudyGroupVolunteer;
 import com.project.long_learn.volunteer.Volunteer;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class VolunteerTest {
 
     @Test
     public void applyTest() {
-        Volunteer member = new Member();
+        Volunteer studyVolunteer = new StudyGroupVolunteer();
         Group studyGroup = new StudyGroup();
 
-        studyGroup.take(member);
+        studyGroup.take(studyVolunteer);
 
-        assertTrue(studyGroup.contains(member));
+        assertTrue(studyGroup.contains(studyVolunteer));
 
     }
 }
