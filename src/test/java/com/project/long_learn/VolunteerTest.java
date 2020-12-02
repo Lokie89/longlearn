@@ -16,7 +16,7 @@ public class VolunteerTest {
         Volunteer member = new Member();
         Group studyGroup = new StudyGroup();
 
-        member.apply(study);
+        studyGroup.take(member);
 
         assertTrue(studyGroup.contains(member));
 
