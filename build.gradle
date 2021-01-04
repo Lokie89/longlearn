@@ -20,6 +20,10 @@ dependencies {
     compile('mysql:mysql-connector-java')
     compile('com.h2database:h2')
     compile('org.springframework.boot:spring-boot-starter-mustache')
+    compile('org.projectlombok:lombok')
+    testCompile('org.projectlombok:lombok')
+    annotationProcessor('org.projectlombok:lombok')
+    testAnnotationProcessor('org.projectlombok:lombok')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
