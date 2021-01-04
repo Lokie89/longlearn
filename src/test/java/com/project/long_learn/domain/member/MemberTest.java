@@ -13,10 +13,13 @@ public class MemberTest {
 
     @Test
     public void 리포팅() {
-        Member member1 = new Member.Builder().name("이름").build();
+        Member member1 = Member.builder().name("이름").build();
         member1.report();
         member1.report();
-        Member member2 = new Member.Builder().name("이름").reporting(2).build();
+        Member member2 = Member.builder().name("이름").reporting(2).build();
         assertEquals(member2, member1);
+        Member member3 = Member.builder().name("이름").build();
+        member3.report();
+        assertNotEquals(member2, member3);
     }
 }
